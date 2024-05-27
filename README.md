@@ -2,16 +2,19 @@
 
 ## 기본 세팅 
 
-- nodejs 설치
-- packages.json dependencies들
-ex) npm i axios
+> nodejs 설치
+
+> 패키지 파일들 설치
+> - cd ./프로젝트명
+>
+> - npm install
 
 ## 실행
 
 npm run dev
-* CORS 확인필요
+* API쪽 CORS 확인필요 => localhost:5188 열려있음
 
 ## 빌드
 
 npm run build
-후에 해당 디렉토리에 복사/덮어쓰기
+후에 해당 디렉토리(/RAC)에 복사/덮어쓰기
