@@ -12,7 +12,7 @@
 ## 실행
 
 npm run dev
-* API쪽 CORS 확인필요 => localhost:5188 열려있음
+* API쪽 CORS 확인필요 => localhost:5173/ 열려있음
 
 ## 빌드
 
