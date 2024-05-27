@@ -1,0 +1,126 @@
+// angular-controller.js
+colorAdminApp.controller('formValidationController', function ($scope, $rootScope, $state) {
+  $scope.submitForm = function (form) {
+    if (!form.$valid) {
+      $('form[name="' + form.$name + '"] *').tooltip('dispose');
+      angular.forEach(form.$error, function (field) {
+        angular.forEach(field, function (errorField) {
+          errorField.$setTouched();
+          var targetContainer = 'form[name="' + form.$name + '"] [name="' + errorField.$name + '"]';
+          var targetMessage = (errorField.$error.required) ? 'This is required' : '';
+          targetMessage = (errorField.$error.email) ? 'Invalid email' : targetMessage;
+          targetMessage = (errorField.$error.url) ? 'Invalid website url' : targetMessage;
+          targetMessage = (errorField.$error.number) ? 'Only number is allowed' : targetMessage;
+          targetMessage = (errorField.$name == 'alphabets') ? 'Only alphabets is allowed' : targetMessage;
+          targetMessage = (errorField.$error.minlength) ? 'You must provide at least 20 characters for this field' : targetMessage;
+          targetMessage = (errorField.$error.maxlength) ? 'You must not exceed the maximum of 200 characters for this field' : targetMessage;
+
+          $(targetContainer).first().tooltip({
+            placement: 'top',
+            trigger: 'normal',
+            title: targetMessage,
+            container: 'body',
+            animation: false
+          });
+          $(targetContainer).first().tooltip('show');
+        });
+      });
+    }
+  };
+});
+
+// views.html
+&lt;form class="form-horizontal" name="validationForm" ng-submit="submitForm(validationForm)" novalidate&gt;
+  &lt;!-- BEGIN panel --&gt;
+  &lt;div class="panel panel-inverse" data-sortable-id="form-validation-1"&gt;
+    &lt;!-- BEGIN panel-heading --&gt;
+    &lt;div class="panel-heading"&gt;
+      &lt;h4 class="panel-title"&gt;Basic Form Validation&lt;/h4&gt;
+      &lt;div class="panel-heading-btn"&gt;
+        &lt;a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"&gt;&lt;i class="fa fa-expand"&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"&gt;&lt;i class="fa fa-redo"&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"&gt;&lt;i class="fa fa-minus"&gt;&lt;/i&gt;&lt;/a&gt;
+        &lt;a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- END panel-heading --&gt;
+    &lt;!-- BEGIN panel-body --&gt;
+    &lt;div class="panel-body"&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3" for="fullname"&gt;Full Name &lt;span class="text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;div class="col-sm-3"&gt;
+          &lt;input type="text" class="form-control" ng-model="form.fullname" name="fullname" placeholder="Required" required /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3"&gt;Required Select Box &lt;span class="text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;div class="col-sm-3"&gt;
+          &lt;select class="form-select" name="selectBox" ng-model="form.selectBox" required&gt;
+            &lt;option value=""&gt;Please choose&lt;/option&gt;
+            &lt;option value="foo"&gt;Foo&lt;/option&gt;
+            &lt;option value="bar"&gt;Bar&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3"&gt;Required Radio Button &lt;span class="text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;div class="form-check"&gt;
+            &lt;input type="radio" name="radioRequired" id="radio1" ng-model="form.radioRequired" value="foo" class="form-check-input" required /&gt;
+            &lt;label class="form-check-label" for="radio1"&gt; Radio Button 1&lt;/label&gt;
+          &lt;/div&gt;
+          &lt;div class="form-check"&gt;
+            &lt;input type="radio" name="radioRequired" id="radio2" ng-model="form.radioRequired" value="bar" class="form-check-input" required /&gt;
+            &lt;label class="form-check-label" for="radio2"&gt; Radio Button 2&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3 d-flex align-items-center"&gt;
+        &lt;label class="col-form-label col-sm-3"&gt;Required Checkbox &lt;span class="text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;div class="form-check"&gt;
+            &lt;input type="checkbox" name="requiredCheckbox" id="check2" ng-model="form.requiredCheckbox" value="foo" class="form-check-input" required /&gt;
+            &lt;label class="form-check-label" for="check2"&gt; Checkbox&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3" for="message"&gt;Message (20 chars min, 200 max) &lt;span class="text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;textarea class="form-control" name="message" rows="4" ng-minlength="20" ng-maxlength="200" ng-model="form.message" placeholder="Range from 20 - 200" required&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3" for="email"&gt;Email Address&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;input type="email" class="form-control" name="email" placeholder="Email" ng-model="form.email" /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3" for="website"&gt;Website&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;input type="url" class="form-control" name="website" placeholder="url" ng-model="form.url" /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3" for="message"&gt;Number&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;input type="number" class="form-control" name="number" placeholder="Number" ng-model="form.number" /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row mb-3"&gt;
+        &lt;label class="col-form-label col-sm-3" for="message"&gt;Regular Expression&lt;/label&gt;
+        &lt;div class="col-sm-6"&gt;
+          &lt;input type="text" class="form-control" name="alphabets" placeholder="Alphabets" ng-model="form.alphabets" ng-pattern="/^[A-z]+$/" /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- END panel-body --&gt;
+    &lt;!-- BEGIN panel-footer --&gt;
+    &lt;div class="panel-footer"&gt;
+      &lt;button type="submit" class="btn btn-success w-100px"&gt;Validate&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;!-- END panel-footer --&gt;
+  &lt;/div&gt;
+  &lt;!-- END panel --&gt;
+&lt;/form&gt;

@@ -1,0 +1,6 @@
+&lt;script&gt;
+  App.setPageOption({
+    appBoxedLayout: true,
+    clearOptionOnLeave: true
+  });
+&lt;/script&gt;

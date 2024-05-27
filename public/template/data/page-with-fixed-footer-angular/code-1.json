@@ -1,0 +1,16 @@
+// angular-controller.js
+colorAdminApp.controller('pageWithFixedFooterController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appContentFullHeight = true;
+  $rootScope.setting.layout.appContentClass = 'p-0';
+});
+
+// views.html
+&lt;div ng-controller="pageWithFixedFooterController" class="d-flex flex-column p-0 h-100"&gt;
+  &lt;div class="app-content-padding flex-grow-1 overflow-hidden" data-scrollbar="true" data-height="100%"&gt;
+    ...
+  &lt;/div&gt;
+  
+  &lt;div id="footer" class="app-footer m-0"&gt;
+    &amp;copy; 2023 Color Admin Responsive Admin Template - Sean Ngu All Rights Reserved
+  &lt;/div&gt;
+&lt;/div&gt;

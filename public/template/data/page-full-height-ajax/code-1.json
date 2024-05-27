@@ -1,0 +1,7 @@
+&lt;script&gt;
+  App.setPageOption({
+    appContentFullHeight: true,
+    appContentClass: 'p-0',
+    clearOptionOnLeave: true
+  });
+&lt;/script&gt;

@@ -1,0 +1,6 @@
+&lt;script&gt;
+  App.setPageOption({
+    appSidebarHover: true,
+    clearOptionOnLeave: true
+  });
+&lt;/script&gt;

@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithTransparentSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarTransparent = true;
+});

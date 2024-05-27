@@ -1,0 +1,7 @@
+&lt;script&gt;
+  App.setPageOption({
+    appSidebarLight: true,
+    appHeaderInverse: true,
+    clearOptionOnLeave: true
+  });
+&lt;/script&gt;

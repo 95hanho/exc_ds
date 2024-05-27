@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithRightSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarEnd = true;
+});

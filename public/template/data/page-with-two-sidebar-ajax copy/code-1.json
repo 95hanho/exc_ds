@@ -1,0 +1,14 @@
+&lt;script&gt;
+  App.setPageOption({
+    appSidebarTwo: true,
+    clearOptionOnLeave: true
+  });
+
+  $.ajax({
+    url: 'partial/sidebar-end.html',
+    success: function(html) {
+      $('[data-id="app-extra-elm"]').html(html);
+      App.restartGlobalFunction();
+    }
+  });
+&lt;/script&gt;

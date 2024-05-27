@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithHoverSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarHover = true;
+});

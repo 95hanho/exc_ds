@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithoutSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarNone = true;
+});

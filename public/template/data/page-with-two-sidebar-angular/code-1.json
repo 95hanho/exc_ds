@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithTwoSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarTwo = true;
+});

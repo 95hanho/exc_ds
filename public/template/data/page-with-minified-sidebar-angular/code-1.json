@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithMinifiedSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarMinified = true;
+});

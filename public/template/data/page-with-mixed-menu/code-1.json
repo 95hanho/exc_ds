@@ -1,0 +1,30 @@
+&lt;div id="app" class="app app-sidebar-fixed app-with-top-menu"&gt;
+  &lt;div class="app-header"&gt;
+    &lt;a href="index.html" class="navbar-brand"&gt;...&lt;/a&gt;
+    
+    &lt;button type="button" class="navbar-mobile-toggler" data-bs-toggle="collapse" data-bs-target="#top-navbar"&gt;
+      &lt;span class="fa-stack fa-lg"&gt;
+        &lt;i class="far fa-square fa-stack-2x"&gt;&lt;/i&gt;
+        &lt;i class="fa fa-cog fa-stack-1x"&gt;&lt;/i&gt;
+      &lt;/span&gt;
+    &lt;/button&gt;
+    
+    &lt;button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile"&gt;
+      &lt;span class="icon-bar"&gt;&lt;/span&gt;
+      &lt;span class="icon-bar"&gt;&lt;/span&gt;
+      &lt;span class="icon-bar"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+          
+  &lt;div class="app-top-menu" data-bs-theme="dark"&gt;
+    ...
+  &lt;/div&gt;
+  
+  &lt;div class="app-sidebar" data-bs-theme="dark"&gt;
+    ...
+  &lt;/div&gt;
+  &lt;div class="app-sidebar-bg" data-bs-theme="dark"&gt;&lt;/div&gt;
+  
+  ...
+&lt;/div&gt;

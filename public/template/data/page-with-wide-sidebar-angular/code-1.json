@@ -1,0 +1,3 @@
+colorAdminApp.controller('pageWithWideSidebarController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appSidebarWide = true;
+});

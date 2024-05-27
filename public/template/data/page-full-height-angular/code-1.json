@@ -1,0 +1,4 @@
+colorAdminApp.controller('pageFullHeightContentController', function ($scope, $rootScope, $state) {
+  $rootScope.setting.layout.appContentFullHeight = true;
+  $rootScope.setting.layout.appContentClass = 'p-0';
+});

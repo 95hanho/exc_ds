@@ -1,0 +1,32 @@
+&lt;div id="header" class="app-header"&gt;
+  &lt;div class="navbar-header"&gt;
+    ...
+    &lt;button type="button" class="navbar-mobile-toggler" data-bs-toggle="collapse" data-bs-target="#top-navbar"&gt;
+      &lt;span class="fa-stack fa-lg text-dark"&gt;
+        &lt;i class="far fa-square fa-stack-2x"&gt;&lt;/i&gt;
+        &lt;i class="fa fa-cog fa-stack-1x mt-1px"&gt;&lt;/i&gt;
+      &lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class="collapse d-md-block me-auto" id="top-navbar"&gt;
+    &lt;div class="navbar-nav"&gt;
+      &lt;div class="navbar-item dropdown dropdown-lg"&gt;
+        &lt;a href="#" class="navbar-link dropdown-toggle pe-md-2" data-bs-toggle="dropdown"&gt;
+          &lt;i class="fa fa-th-large fa-fw me-1 me-md-0"&gt;&lt;/i&gt; 
+          &lt;span class="d-lg-inline d-md-none"&gt;
+            Mega &lt;b class="caret ms-1 ms-md-0"&gt;&lt;/b&gt;
+          &lt;/span&gt;
+        &lt;/a&gt;
+        &lt;div class="dropdown-menu dropdown-menu-lg"&gt;
+          ...
+        &lt;/div&gt;
+      &lt;/div&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="navbar-nav"&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;

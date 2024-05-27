@@ -1,0 +1,6 @@
+&lt;script&gt;
+  App.setPageOption({
+    appSidebarSearch: true,
+    clearOptionOnLeave: true
+  })
+&lt;/script&gt;
