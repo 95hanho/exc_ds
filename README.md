@@ -17,4 +17,5 @@ npm run dev
 ## 빌드
 
 npm run build
-후에 해당 디렉토리(/RAC)에 복사/덮어쓰기
+후에 '/dist'의 파일들 'sclass.exc.co.kr'에 복사/덮어쓰기    
+* template 폴더는 정적파일들로 나머지만
