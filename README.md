@@ -11,7 +11,8 @@
 
 ## 실행
 
-npm run dev
+npm run dev   
+npm run dev -- --port 5173 => port5173으로 로컬실행
 * API쪽 CORS 확인필요 => localhost:5173/ 열려있음
 
 ## 빌드
