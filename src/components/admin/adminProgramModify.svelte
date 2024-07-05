@@ -38,11 +38,11 @@
     const resetAddDates = (index) => {
         console.log('resetAddDates', index)
         if(addDates.length > 1) {
-            addDates.splice(index, 1);
+            addDates = addDates.filter((v, i) => i !== index);
         } else {
             addDates[index] = "";
+            addDates = addDates;
         }
-        addDates = addDates;
     }
 
     // 프로그램 변경

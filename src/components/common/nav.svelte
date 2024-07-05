@@ -33,10 +33,14 @@
             <img src={login_btn} alt="">
         </button>
         {/if}
-        {#if $grant}
+        {#if $grant == 90}
         <button class="admin-btn btn btn-danger me-1 mb-1"
             on:click={() => push('/admin/program')}
         >관리자페이지</button>
+        {:else if $grant == 80}
+        <button class="admin-btn btn btn-danger me-1 mb-1"
+            on:click={() => push('/manager')}
+        >운영자페이지</button>
         {/if}
         <div class="main_title">
             <img src={main_title} alt="">

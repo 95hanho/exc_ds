@@ -66,8 +66,7 @@
     const commentDelete = () => {
         const cIndex = $modal_confirm_result.replace('commentDelete-', '');
         deleteQnaComment(commentList[cIndex].id).then(({data}) => {
-            commentList.splice(Number(cIndex), 1);
-            commentList = commentList;
+            commentList = commentList.filter((v, i) => i !== Number(cIndex));
         });
     }
     // 초기 데이터 불러오기
@@ -100,7 +99,7 @@
             <h4 class="panel-title">{notice.type === 'G' ? '공지사항' : 'QnA'}</h4>
             <!-- BEGIN complete-btn -->
             <div class="complete-btn">
-                {#if (notice.type === 'G' && $grant) || notice.writer_login_id === $login_id}
+                {#if (notice.type === 'G' && $grant == 90) || notice.writer_login_id === $login_id}
                 <button class="btn btn-primary me-1 mb-1" 
                     on:click={() => {
                         if(notice.type === 'G') {
@@ -110,7 +109,7 @@
                         }
                     }}>수정</button>
                 {/if}
-                {#if $grant || notice.writer_login_id === $login_id}
+                {#if $grant == 90 || notice.writer_login_id === $login_id}
                 <button type="button" class="btn btn-danger me-1 mb-1"
                     on:click={() => {
                         modal_confirm.open('삭제하시겠습니까?', 'noticeQnaDelete');
@@ -138,7 +137,7 @@
                     <label class="form-label col-form-label col-lg-2">등록자</label>
                     <div class="col-lg-2 flex_center">
                         {notice.writer}
-                        {#if $grant}
+                        {#if $grant == 90}
                             ({notice.writer_login_id})
                         {/if}
                     </div>
@@ -191,7 +190,7 @@
                                         }, 200)
                                 }}>수정</button>
                                 {/if}
-                                {#if $grant || $login_id === comment.writer_login_id}
+                                {#if $grant == 90 || $login_id === comment.writer_login_id}
                                 <button class="c_red" on:click={() => {
                                     modal_confirm.open('답글을 삭제하시겠습니까?', `commentDelete-${index}`);
                                 }}>삭제</button>    
@@ -215,7 +214,7 @@
                     </div>
                 </div>
                 {/each}
-                {#if $grant || $login_id === notice.writer_login_id}
+                {#if $grant == 90 || $login_id === notice.writer_login_id}
                 <div class="opinion-wrap my input-form">
                     {#if commentIng || newCTxt}
                     <div>

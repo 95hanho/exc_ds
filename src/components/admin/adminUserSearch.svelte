@@ -13,7 +13,7 @@
     
     let initUserSearchAwait = null;
     
-    let type = 'name';
+    let type = 'login_id';
     let searchTxt = ""; // 검색텍스트
     let searchTxtEle = null; // 검색텍스트요소
     let allUserList = [];
@@ -62,7 +62,7 @@
             storeWord = keyword;
             console.log(type, keyword);
             initUserSearchAwait = await getStudentsSearch({type, keyword}).then(({data}) => {
-                console.log(data.data);
+                console.log(keyword, data.data);
                 allUserList = data.data;
                 return data.data;
             });
@@ -76,7 +76,7 @@
     const userList_filter = () => {
         userList = allUserList.filter((v) => {
             const attr = `member_${type}`;
-            if(v[attr].replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣]/g, '').includes(regWord)) return true;
+            if(v[attr].replace(/[^가-힣a-zA-Z0-9]/g, '').includes(regWord)) return true;
             return false;
         });
     }
@@ -160,10 +160,10 @@
                             // searchTxt = "";
                             // listReset();
                         }}>
-                        <option value="name">이름</option>
                         <option value="login_id">아이디</option>
-                        <option value="insa_number">사번</option>
+                        <option value="name">이름</option>
                         <option value="hp">휴대폰</option>
+                        <option value="insa_number">사번</option>
                     </select>
                 </div>
                 <div class="search_input navbar-item navbar-form">
@@ -203,10 +203,10 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>이름</th>
                                     <th>아이디</th>
-                                    <th>사번</th>
+                                    <th>이름</th>
                                     <th>휴대폰</th>
+                                    <th>사번</th>
                                 </tr>
                             </thead>
                         </table>
@@ -224,15 +224,15 @@
                                                     else searchFocus(e, index);
                                                 }}>검색결과선택</button>
                                         </td>
-                                        <td>{resultUser.member_name}</td>
                                         <td>{resultUser.member_login_id}</td>
-                                        <td>{resultUser.member_insa_number}</td>
+                                        <td>{resultUser.member_name}</td>
                                         <td>
                                             {resultUser.member_hp}
                                             {#if index === userList.length - 1}
                                             <div style="visibility: hidden;" bind:this={userListComplete}></div>
                                             {/if}
                                         </td>
+                                        <td>{resultUser.member_insa_number}</td>
                                     </tr>
                                     {/each}
                                 </tbody>

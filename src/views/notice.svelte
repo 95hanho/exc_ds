@@ -83,7 +83,7 @@
                         </tr>
                         {:else}
                         <tr on:click={() => {
-                            if(notice.secret && (!$grant && $login_id !== notice.writer_login_id)) {
+                            if(notice.secret && ($grant != 90 && $login_id !== notice.writer_login_id)) {
                                 modal_alert.open('비밀글 입니다.');
                             } else {
                                 noticeQnaUpHit(notice.id).then(({data}) => {
@@ -156,7 +156,7 @@
     </div>
     <!-- END panel -->
     <div class="writer-btn align_right">
-        {#if $grant}
+        {#if $grant == 90}
         <a href={"/notice/notice-write"} use:link class="btn btn-danger me-1 mb-1">공지사항쓰기</a>
         {:else}
         <a href="/notice/write" use:link class="btn btn-dark me-1 mb-1">글쓰기</a>

@@ -67,8 +67,7 @@
     const commentDelete = () => {
         const cIndex = $modal_confirm_result.replace('commentTalkDelete-', '');
         deleteTalkComment(commentList[cIndex].id).then(({data}) => {
-            commentList.splice(Number(cIndex), 1);
-            commentList = commentList;
+            commentList = commentList.filter((v, i) => i !== Number(cIndex));
         });
     }
     // 초기 데이터 불러오기
@@ -108,7 +107,7 @@
                         push(`/talktalk/write/${tId}?page=${page}`)
                     }}>수정</button>
                 {/if}
-                {#if $grant || talk.writer_login_id === $login_id}
+                {#if $grant == 90 || talk.writer_login_id === $login_id}
                 <button type="button" class="btn btn-danger me-1 mb-1"
                     on:click={() => {
                         modal_confirm.open('삭제하시겠습니까?', 'talkDelete');
@@ -172,7 +171,7 @@
                                         }, 200);
                                 }}>수정</button>
                                 {/if}
-                                {#if $grant || $login_id === comment.writer_login_id}
+                                {#if $grant == 90 || $login_id === comment.writer_login_id}
                                 <button class="c_red" on:click={() => {
                                     modal_confirm.open('댓글을 삭제하시겠습니까?', `commentTalkDelete-${index}`);
                                 }}>삭제</button>    

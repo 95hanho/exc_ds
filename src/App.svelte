@@ -19,6 +19,7 @@
 
     $: noImage = $location.startsWith('/notice') 
     || $location.startsWith('/admin')
+    || $location.startsWith('/manager')
     || $location.startsWith('/talktalk/write')
     || $location.startsWith('/notPage');
 

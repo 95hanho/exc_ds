@@ -7,6 +7,7 @@
     import { onDestroy, onMount } from 'svelte';
     import Loding from '../components/common/loding.svelte';
     import { programIntroScrTop } from '../store/moduleSlice.js';
+    import exampleImg from '../assets/img/example.jpg';
 
     // 비동기변수
     let introAwait = null;
@@ -57,6 +58,23 @@
         <!-- BEGIN pos-content -->
         <div class="pos-content">
             <div class="pos-content-container h-100">
+                <h3>예시</h3>
+                <div class="product-row">
+                    <div class="product-container" data-type="meat">
+                        <a href={"/program/"} use:link class="product program" data-bs-toggle="modal" data-bs-target="#modalPos"
+                            on:click={() => {
+                                scrollSave();
+                            }}>
+                            <div class="img" style={`background-image: url(${exampleImg})`}></div>
+                            <div class="program-info">
+                                <h4 style={`color:${"#f00"}`}>제목제목제목</h4>
+                                <h2>ㅁㄹㄴㅇㅁㄹㄴㅁㅇㄹㅇ</h2>
+                            </div>
+                            <div class="c_gray">#salfkjalksfdj #asdfdsadf</div>
+                            <div class="new_bat">NEW</div>
+                        </a>
+                    </div>
+                </div>
                 {#each programInfo as program, index}
                 <h3 id={`content${index + 1}`}>{program.title}</h3>
                 <div class="product-row">
@@ -67,6 +85,10 @@
                                 scrollSave();
                             }}>
                             <div class="img" style={`background-image: url(${pro.program_header_img_url})`}></div>
+                            <div class="program-info">
+                                <h4 style={`color:${program.color}`}>{program.title}</h4>
+                                <h2>{pro.program_name}</h2>
+                            </div>
                             <div class="c_gray">{pro.program_hash_tag}</div>
                             {#if pro.program_new_label === 'Y'}
                             <div class="new_bat">NEW</div>
@@ -131,7 +153,7 @@
 }
 .pos .product-row .product-container .new_bat {
     position: absolute;
-    top:35px;
+    top:15px;
     left:20px;
     z-index:10;
     background-color: yellow;
@@ -145,9 +167,20 @@
 }
 .pos .program .img {
     width:100%;
-    min-height: 320px;
-    background-size: 100% 290px;
+    background-size: cover;
     background-repeat: no-repeat;
+}
+.pos .program .program-info h4 {
+    color:#32bd93;
+    font-size:14px;
+    font-weight: 900;
+    padding:15px 0 2px;
+}
+.pos .program .program-info h2 {
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0px;
+    word-break: keep-all;
 }
 .section-container {
     width: 180px;

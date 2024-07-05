@@ -57,11 +57,20 @@
     }
 
     $: if(notice_complete) {
-        clearTimeout(noticeReStartIndex);
-        clearInterval(noticeSliceIndex);
-        noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
+        visibilitychange_fnc();
+        document.addEventListener('visibilitychange', visibilitychange_fnc);
+    }
+    const visibilitychange_fnc = () => {
+        if (document.hidden) {
+            clearTimeout(noticeReStartIndex);
+            clearInterval(noticeSliceIndex);
+        } else {
+            noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
+        }
     }
     onMount(() => {
+        clearTimeout(noticeReStartIndex);
+        clearInterval(noticeSliceIndex);
         mainInitAwait = mainInit().then(({data}) => {
             noticeLeng = data.data.notice_latest.length;
             return data.data;
