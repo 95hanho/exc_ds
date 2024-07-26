@@ -1,15 +1,21 @@
 <script>
 	import { actionCheckedPrograms, getAdminApp } from '../../compositions/admin.js';
     import 'font-awesome/css/font-awesome.css';
-    import { onDestroy, onMount } from 'svelte';
+    import { getContext, onDestroy, onMount } from 'svelte';
     import Loding from '../common/loding.svelte';
     import "moment/locale/ko";
     import moment from 'moment/moment';
     import { uiScr } from '../../compositions/scroll.js';
+    import AdminAppStudents from './adminAppStudents.svelte';
     import { onAllLoding } from '../../store/moduleSlice.js';
-  import ManagerProgramStudents from './managerProgramStudents.svelte';
 
     // export let openModalUserSearch;
+    export let openModalProgramModify;
+    export let programResult;
+    export let openAdminAppAdd;
+    export let modalStatus;
+    export let changeUser;
+    const resetModalStatus = getContext('resetModalStatus');
 
     let allChecked = false;
     let courses = []; // 과정리스트
@@ -41,8 +47,13 @@
     let sortingInfo = new Array(20).fill(null);
     let sortingIndex = -1; // sorting중인 인덱스
     let sortingAttr = ''; // sorting중인 속성
+    let sortingReverseOn = false;
 
     let getProgramAwait = null;
+
+    let clickPrventIndex = null;
+
+    let trueIs_202405 = new Date('2024-05-01 00:00:00') < new Date();
 
     // 새로고침 버튼
     const reloadData = async () => {
@@ -83,6 +94,28 @@
             return true;
         });
         calcChecked();
+    }
+    // 폐강숨김상태변경
+    const closeNhideClass = (closeOn) => {
+        if(!checkedPrograms.length) return;
+        const programCodes = checkedPrograms.map((v) => v.schedule_code)
+        actionCheckedPrograms({
+            schedule_code:programCodes,
+            type:closeOn ? 'SC' : 'OPEN_STATUS',
+        }).then(({data}) => {
+            const indexList = checkedPrograms.map((v) => v.indexNum);
+            indexList.map((allPIndex) => {
+                if(closeOn) {
+                    allProgramList[allPIndex].schedule_status = !allProgramList[allPIndex].schedule_status
+                } else {
+                    allProgramList[allPIndex].open_status = !allProgramList[allPIndex].open_status
+                }
+            });
+            programList.map((v) => {
+                v.checked = false;
+            });
+            makeProgramList();
+        });
     }
     // 엑셀다운로드
     const studentsExcel = async () => {
@@ -182,9 +215,17 @@
         });
     }
     /*  */
+    // 프로그램 수정 후 결과
+    $: if(modalStatus === 'modifySuccess') {
+        allProgramList[programResult.indexNum] = programResult;
+        makeProgramList();
+        resetModalStatus();
+    }
+    /*  */
     // 초기 프로그램리스트 반복사용
     const initDataFnc = async (year, month) => {
         getProgramAwait = await getAdminApp(year, month).then(({data}) => {
+            console.log(data.data);
             if(year === 0 && month === 0) {
                 selectMonth = data.select_month;
                 selectYear = data.select_year;
@@ -222,6 +263,13 @@
             selectCourse = "";
             allChecked = false;
         });
+        makeProgramList();
+    }
+    /*  */
+    
+    /*  */
+    const schedule_latest = (changeProgram) => {
+        allProgramList[changeProgram.indexNum] = changeProgram;
         makeProgramList();
     }
     /*  */
@@ -333,6 +381,10 @@
                         on:click={reloadData}>
                         <i class="fas fa-sync fa-spin"></i>
                     </button>
+                    <button class="plus-data btn btn-info"
+                        on:click={openAdminAppAdd}>
+                        강의<i class="fas fa-plus"></i>
+                    </button>
                 </div>
             </div>
             <div id="headerFixed" class="button_area">
@@ -343,6 +395,12 @@
                     on:change={makeProgramList}>
                     <label for="close_class">폐강된 과정 안보기</label>)
                     <p class="align_left c_blue" style="margin: 0;">* {checkedPrograms.length}개 선택됨</p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-gray me-1 mb-1"
+                        on:click={() => closeNhideClass(true)}>선택 폐강상태변경</button>
+                    <button type="button" class="btn btn-default me-1 mb-1"
+                        on:click={() => closeNhideClass(false)}>선택 숨김상태변경</button>
                 </div>
                 <div>
                     <button type="button" class="btn btn-success me-1 mb-1"
@@ -363,6 +421,10 @@
                             on:change={makeProgramList}>
                             <label for="close_class">폐강된 과정 안보기({close_class_count})</label>
                             <p class="align_left c_blue" style="margin: 0;">* {checkedPrograms.length}개 선택됨</p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-gray me-1 mb-1" on:click={() => closeNhideClass(true)}>선택 폐강상태변경</button>
+                            <button type="button" class="btn btn-default me-1 mb-1" on:click={() => closeNhideClass(false)}>선택 숨김상태변경</button>
                         </div>
                         <div>
                             <button type="button" class="btn btn-success me-1 mb-1"
@@ -547,8 +609,15 @@
                         class:hided={!program.open_status}
                         class="mainInfo"
                         on:click={(e) => {
-                            program.checked = !program.checked;
-                            calcChecked();
+                            clearTimeout(clickPrventIndex);
+                            clickPrventIndex = setTimeout(() => {
+                                program.checked = !program.checked
+                                calcChecked();
+                            }, 160);
+                        }}
+                        on:dblclick|stopPropagation={(e) => {
+                            clearTimeout(clickPrventIndex);
+                            openModalProgramModify(program);
                         }}>
                         <td>
                             <input type="checkbox" bind:checked={program.checked} on:click|stopPropagation={calcChecked}>
@@ -608,7 +677,8 @@
                         </td>
                     </tr>
                     {#if program.onStudents}
-                    <ManagerProgramStudents curProgram={program} />
+                    <AdminAppStudents curProgram={program} 
+                    {schedule_latest} {modalStatus} {changeUser}/>
                     {/if}
                     {/each}
                 </tbody>

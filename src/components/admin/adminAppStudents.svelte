@@ -1,6 +1,6 @@
 <script>
-	import { modal_alert, modal_apply_cancer_admin, modal_apply_cancer_admin_reason } from './../../store/modalSlice.js';
-	import { adminProgramRegist, deleteEnrollStudent, getAdminProgramStudents, setEnrollStudent, setPresent } from './../../compositions/admin.js';
+	import { modal_alert, modal_apply_cancer_admin, modal_apply_cancer_admin_reason } from '../../store/modalSlice.js';
+	import { adminAppRegist, deleteEnrollStudent, getAdminAppStudents, setEnrollStudent, setPresent } from '../../compositions/admin.js';
     import Loding from "../common/loding.svelte";
     import { getContext } from 'svelte';
     import "moment/locale/ko";
@@ -23,7 +23,7 @@
 
     // 학생리스트 불러오기
     const initGetStudents = async () => {
-        getStudentsAwait = getAdminProgramStudents({schedule_code:curProgram.schedule_code}).then(({data}) => {
+        getStudentsAwait = getAdminAppStudents({schedule_code:curProgram.schedule_code}).then(({data}) => {
             console.log(data);
             studentList = [];
             waitStudentList = [];
@@ -109,7 +109,7 @@
         if([...studentList, ...waitStudentList].some((v) => v.member_no === changeUser.member_no)) {
             modal_alert.open('이미 신청 되어있는 교육생 입니다.');
         } else {
-            adminProgramRegist({member_no:changeUser.member_no, schedule_code: curProgram.schedule_code}).then(({data}) => {
+            adminAppRegist({member_no:changeUser.member_no, schedule_code: curProgram.schedule_code}).then(({data}) => {
                 console.log(data);
                 curProgram.enrol_count++;
                 schedule_latest(curProgram);

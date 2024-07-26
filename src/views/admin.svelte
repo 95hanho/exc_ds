@@ -1,18 +1,19 @@
 <script>
 	import { location } from 'svelte-spa-router';
     import AdminEtc from "../components/admin/adminEtc.svelte";
-import AdminProgram from "../components/admin/adminProgram.svelte";
-    import AdminProgramModify from "../components/admin/adminProgramModify.svelte";
+    import AdminApp from "../components/admin/adminApp.svelte";
+    import AdminAppModify from "../components/admin/adminAppModify.svelte";
     import AdminStudent from "../components/admin/adminStudent.svelte";
     import AdminTabMenu from "../components/admin/adminTabMenu.svelte";
     import AdminUserSearch from "../components/admin/adminUserSearch.svelte";
-    import AdminProgramAdd from '../components/admin/adminProgramAdd.svelte';
+    import AdminAppAdd from '../components/admin/adminAppAdd.svelte';
     import { setContext } from 'svelte';
+	import AdminProgram from '../components/admin/adminProgram.svelte';
 
     export let params = {}
     $: menu = params.menu;
 
-    /* AdminUserSearch, AdminProgramModify 관련 */
+    /* AdminUserSearch, AdminAppModify 관련 */
     let modalStatus = ""; // 모달상태값(변화에 따라 함수적용)
     // 모달상태값 초기화
     const resetModalStatus = (result) => {
@@ -46,47 +47,51 @@ import AdminProgram from "../components/admin/adminProgram.svelte";
         user = {};
     }
 
-    let adminProgramModifyOn = false; // AdminProgramModify 열지말지
+    let adminAppModifyOn = false; // AdminAppModify 열지말지
     let program = {}; // 
 
     const openModalProgramModify = (prg) => {
         program = {...prg};
-        adminProgramModifyOn = true;
+        adminAppModifyOn = true;
     }
     const closeModalProgramModify = () => {
-        adminProgramModifyOn = false;
+        adminAppModifyOn = false;
     }
-    const setAdminProgramResult = (obj) => {
+    const setAdminAppResult = (obj) => {
         program = {...obj};
         modalStatus = 'modifySuccess';
     }
 
-    /* AdminProgramAdd 관련 */
+    /* AdminAppAdd 관련 */
 
-    let adminProgramAddOn = false;
+    let adminAppAddOn = false;
 
-    const openAdminProgramAdd = () => {
-        adminProgramAddOn = true;
+    const openAdminAppAdd = () => {
+        adminAppAddOn = true;
     }
-    const closeAdminProgramAdd = () => {
-        adminProgramAddOn = false;
+    const closeAdminAppAdd = () => {
+        adminAppAddOn = false;
     }
 
 
 </script>
 
-<div id="content" class="admin">
-    <AdminTabMenu />
-    <div class="admin-content">
-        {#if menu === 'program'}
-        <AdminProgram {openModalProgramModify} 
-            programResult={program} {modalStatus} changeUser={user}
-            {openAdminProgramAdd}/>
-        {:else if menu === 'student'}
-        <AdminStudent {openModalUserSearch} {user} {modalStatus}/>
-        {:else if menu === 'etc'}
-        <AdminEtc />
-        {/if}
+<div>
+    <div id="content" class="admin">
+        <AdminTabMenu />
+        <div class="admin-content">
+            {#if menu === 'application'}
+            <AdminApp {openModalProgramModify} 
+                programResult={program} {modalStatus} changeUser={user}
+                {openAdminAppAdd}/>
+            {:else if menu === 'student'}
+            <AdminStudent {openModalUserSearch} {user} {modalStatus}/>
+            {:else if menu === 'program'}
+            <AdminProgram />
+            {:else if menu === 'etc'}
+            <AdminEtc />
+            {/if}
+        </div>
     </div>
 </div>
 
@@ -94,11 +99,11 @@ import AdminProgram from "../components/admin/adminProgram.svelte";
 <AdminUserSearch {closeModalUserSearch} {searchComplete}
     {desangStudent} {user}/>
 {/if}
-{#if adminProgramModifyOn}
-<AdminProgramModify {closeModalProgramModify} {program} {setAdminProgramResult}/>
+{#if adminAppModifyOn}
+<AdminAppModify {closeModalProgramModify} {program} {setAdminAppResult}/>
 {/if}
-{#if adminProgramAddOn}
-<AdminProgramAdd {closeAdminProgramAdd}/>
+{#if adminAppAddOn}
+<AdminAppAdd {closeAdminAppAdd}/>
 {/if}
 
 <style>

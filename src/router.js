@@ -14,6 +14,8 @@ import NoticeDetail from "./views/noticeDetail.svelte";
 import NoticeModify from "./views/noticeModify.svelte";
 import NoticeQnaModify from "./views/noticeQnaModify.svelte";
 import Admin from "./views/admin.svelte";
+import AdminProgramAdd from "./views/adminProgramAdd.svelte";
+import AdminProgramModify from "./views/adminProgramModify.svelte";
 import Manager from "./views/manager.svelte";
 import Ready from "./views/ready.svelte";
 import NotPage from "./views/notPage.svelte";
@@ -151,6 +153,20 @@ const router = {
 	/*  */
 	...notice,
 	/*  */
+	"/admin/program/add": wrap({
+		asyncComponent: async () => {
+			await loginUrlCheck();
+			if (!(await adminCheck())) return;
+			return AdminProgramAdd;
+		},
+	}),
+	"/admin/program/:pNum": wrap({
+		asyncComponent: async () => {
+			await loginUrlCheck();
+			if (!(await adminCheck())) return;
+			return AdminProgramModify;
+		},
+	}),
 	"/admin/:menu": wrap({
 		asyncComponent: async () => {
 			await loginUrlCheck();

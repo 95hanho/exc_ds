@@ -35,7 +35,7 @@
         {/if}
         {#if $grant == 90}
         <button class="admin-btn btn btn-danger me-1 mb-1"
-            on:click={() => push('/admin/program')}
+            on:click={() => push('/admin/application')}
         >관리자페이지</button>
         {:else if $grant == 80}
         <button class="admin-btn btn btn-danger me-1 mb-1"
@@ -53,10 +53,11 @@
             나의 프로그램 신청현황과<br>
             교육일정 및 수강이력을 확인합니다.
             {:else if $location.startsWith('/talktalk')}
-            개별 과정에 대해 자유롭게 이야기 하는 곳입니다. <br>
-            과정의 내용이나, 운영방식 등 사전에 묻고 싶은 내용이나, <br>
-            강사님께 미처 문의하지 못한 내용 뿐만 아니라 <br>
-            과정을 듣고 좋았던 점이나 더 필요한 내용들도 적어주세요.
+                개별 과정에 대해 자유롭게 이야기 하는 곳입니다. <br>
+                과정 내용, 운영 방식, 강사님께 문의하고 싶은 내용 뿐만 아니라 <br>
+                과정을 듣고 좋았던 점이나 더 필요한 내용들을 자유롭게 적어주세요. <br><br>
+                * 과정 신청 및 취소 문의는 문의처로 연락주시기 바랍니다.<br>
+                010-8340-9033 / dsld01.sec@samsung.com
             {/if}
         </div>
     </div>
@@ -118,6 +119,7 @@
     color:#01378f;
 }
 .talktalk {
-    font-size:20px;
+    font-size:17px;
+    top:50px;
 }
 </style>

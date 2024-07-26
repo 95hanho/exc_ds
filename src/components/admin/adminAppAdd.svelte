@@ -9,7 +9,7 @@
     import { onAllLoding } from '../../store/moduleSlice';
     import { addProgramSchedules } from '../../compositions/admin';
 
-    export let closeAdminProgramAdd;
+    export let closeAdminAppAdd;
 
     let initData = [
         [],
@@ -37,7 +37,7 @@
         troubleJ = -1;
     }
     // 차수 추가
-    const adminProgramAdd_before = async () => {
+    const adminAppAdd_before = async () => {
         const excelData = excel.getData();
         console.log(excelData);
         onAllLoding.set(true);
@@ -158,7 +158,7 @@
     });
 </script>
 
-<div id="adminProgramAdd" class="modal" in:fade={{duration: 400}} out:fade={{duration: 400}}>
+<div id="adminAppAdd" class="modal" in:fade={{duration: 400}} out:fade={{duration: 400}}>
     <div
         class="modal-background"
     ></div>
@@ -169,7 +169,7 @@
                 <button
                 type="button"
                 class="modal_close"
-                on:click={closeAdminProgramAdd}
+                on:click={closeAdminAppAdd}
                 >
                 닫기
                 </button>
@@ -253,14 +253,14 @@
                         excel.setData([[]]);
                     }}>리셋</button>
                 <button class="complete btn btn-primary me-1 mb-1"
-                    on:click={adminProgramAdd_before}>완료</button>
+                    on:click={adminAppAdd_before}>완료</button>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-#adminProgramAdd {
+#adminAppAdd {
     z-index:1021;
 }
 .app-header h4 {

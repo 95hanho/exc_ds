@@ -7,11 +7,11 @@
     import { onDestroy, onMount } from 'svelte';
     import moment from 'moment';
     import { modal_alert } from '../../store/modalSlice';
-    import { setAdminProgram } from '../../compositions/admin';
+    import { setAdminApp } from '../../compositions/admin';
 
     export let closeModalProgramModify;
     export let program;
-    export let setAdminProgramResult;
+    export let setAdminAppResult;
     console.log(program);
 
     let modalEle = null;
@@ -46,7 +46,7 @@
     }
 
     // 프로그램 변경
-    const setAdminProgram_before = () => {
+    const setAdminApp_before = () => {
         const sDate = new Date(startDate);
         const eDate = new Date(endDate);
         if(sDate >= eDate) {
@@ -72,10 +72,9 @@
                 obj.schedule_start_date_add_date = endDate;
             if(addDates.length > 1)
                 obj.schedule_after_date = addDates.slice(0, addDates.length - 1).sort();
-            console.log(obj);
-            setAdminProgram(obj).then(({data}) => {
+            setAdminApp(obj).then(({data}) => {
                 console.log(data);
-                setAdminProgramResult({...program, ...data.data});
+                setAdminAppResult({...program, ...data.data});
                 closeModalProgramModify();
             });
         }
@@ -124,9 +123,31 @@
     }
 
     onMount(() => {
+        // final_status
         let dateFormat = 'YYYY-MM-DD HH:mm';
         startDate = moment(program.schedule_start_date).format(dateFormat);
-        flatpickr("#datepicker", {defaultDate:startDate, noCalendar:true, ...datePickerSetting, now: new Date(program.schedule_start_date)});
+        const now = new Date();
+        const fiveAfter = new Date();
+        fiveAfter.setDate(now.getDate() + 5);
+
+        const curDate = new Date(startDate.substring(0, 10));
+        const maxDate = new Date(startDate.substring(0, 10));
+        maxDate.setMonth(maxDate.getMonth() + 1);
+        maxDate.setDate(1);
+        maxDate.setDate(maxDate.getDate() - 1);
+
+        let noCalendar = false;
+        let minDate_str = startDate.substring(0, 8) + '01';
+        
+        const minDate_day = new Date(startDate.substring(0, 8) + '01');
+        if(now.getMonth() === minDate_day.getMonth()) {
+            if(curDate >= fiveAfter) {
+                minDate_str = fiveAfter.toISOString().substring(0, 10);
+            } else {
+                noCalendar = true;
+            }
+        }
+        flatpickr("#datepicker", {defaultDate:startDate, noCalendar , minDate: minDate_str, maxDate: maxDate.toISOString().substring(0, 10), ...datePickerSetting, now: new Date(program.schedule_start_date)});
         endDate = program.schedule_start_date_add_date ? moment(program.schedule_start_date_add_date).format(dateFormat) : '';
         flatpickr("#datepicker2", {defaultDate:endDate, ...datePickerSetting, 
             now: program.schedule_start_date_add_date 
@@ -270,7 +291,7 @@
             </div>
             <div class="modal-confirm">
                 <button type="button" class="btn btn-success me-1 mb-1"
-                    on:click={setAdminProgram_before}>저장</button>
+                    on:click={setAdminApp_before}>저장</button>
             </div>
             <!-- END panel -->
             <div class="modal-btn_wrap">

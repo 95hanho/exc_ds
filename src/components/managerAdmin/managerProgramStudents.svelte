@@ -1,5 +1,5 @@
 <script>
-	import {  getAdminProgramStudents } from '../../compositions/admin.js';
+	import {  getAdminAppStudents } from '../../compositions/admin.js';
     import Loding from '../common/loding.svelte';
     import "moment/locale/ko";
     import moment from 'moment/moment';
@@ -13,7 +13,7 @@
 
     // 학생리스트 불러오기
     const initGetStudents = async () => {
-        getStudentsAwait = getAdminProgramStudents({schedule_code:curProgram.schedule_code}).then(({data}) => {
+        getStudentsAwait = getAdminAppStudents({schedule_code:curProgram.schedule_code}).then(({data}) => {
             studentList = [];
             waitStudentList = [];
             final_status = data.enrol_final_status;

@@ -65,7 +65,11 @@
             clearTimeout(noticeReStartIndex);
             clearInterval(noticeSliceIndex);
         } else {
-            noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
+            if(noticeLeng > 1) {
+                clearTimeout(noticeReStartIndex);
+                clearInterval(noticeSliceIndex);
+                noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
+            }
         }
     }
     onMount(() => {

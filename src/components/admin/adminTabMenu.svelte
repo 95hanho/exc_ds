@@ -7,14 +7,20 @@
 <div id="tabList">
     <ul class="profile-header-tab nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <a href="/admin/program" use:link 
-            class="nav-link" class:active={$location.startsWith('/admin/program')}>
-                프로그램 관리
+            <a href="/admin/application" use:link 
+            class="nav-link" class:active={$location.startsWith('/admin/application')}>
+                일정 관리
             </a>
         </li>
         <li class="nav-item" role="presentation">
             <a href="/admin/student" use:link class="nav-link" class:active={$location.startsWith('/admin/student')}>
                 교육생 관리
+            </a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a href="/admin/program" use:link class="nav-link" class:active={$location.startsWith('/admin/program')}>
+                <!-- 과정 관리 -->
+                 (개발중 Don't touch)
             </a>
         </li>
         <li class="nav-item" role="presentation">
@@ -37,7 +43,8 @@
     margin:0 auto;
 }
 .nav-item {
-    width:calc(33.3333% - 10px);
+    /* width:calc(33.3333% - 10px); */
+    width:calc(25% - 10px);
     text-align: center;
     font-size:22px;
     margin-left:5px;
