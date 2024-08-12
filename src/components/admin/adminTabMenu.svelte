@@ -19,8 +19,7 @@
         </li>
         <li class="nav-item" role="presentation">
             <a href="/admin/program" use:link class="nav-link" class:active={$location.startsWith('/admin/program')}>
-                <!-- 과정 관리 -->
-                 (개발중 Don't touch)
+                프로그램 관리
             </a>
         </li>
         <li class="nav-item" role="presentation">

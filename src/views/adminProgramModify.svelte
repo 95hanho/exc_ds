@@ -10,7 +10,7 @@
     import 'summernote/dist/summernote-lite.js';
     import "summernote/dist/summernote-lite.css";
     import { getIntroDetail } from '../compositions/intro';
-	import { setProgram } from '../compositions/admin.js';
+	import { programHide, setProgram } from '../compositions/admin.js';
 
     export let params = {};
 
@@ -105,7 +105,8 @@
 
     // 과정숨김처리
     $: if($modal_confirm_result === 'programHide') {
-        deleteNoticeQna(nId).then(({data}) => {
+        programHide(params.pNum).then(({data}) => {
+            console.log(data);
             replace('/admin/program');
             $modal_confirm_result = "";
         });
@@ -150,11 +151,19 @@
             <div class="panel-heading">
                 <h4 class="panel-title">과정 수정</h4>
             <div class="complete-btn">
+                {#if adminProgram.program_status === 'Y'}
                 <button type="button" class="btn btn-gray me-1 mb-1"
                     on:click={() => {
-                        modal_confirm.open('해당 과정을 숨김하시겠습니까??', 'programHide');
+                        modal_confirm.open('해당 과정을 숨김 하시겠습니까??', 'programHide');
                     }}>숨김
                 </button>
+                {:else}
+                <button type="button" class="btn btn-dark me-1 mb-1"
+                    on:click={() => {
+                        modal_confirm.open('숨김해제 하시겠습니까???', 'programHide');
+                    }}>숨김해제
+                </button>
+                {/if}
             </div>
             </div>
             <!-- END panel-heading -->
@@ -199,7 +208,7 @@
                         <label class="form-label col-form-label col-lg-4">제목이미지</label>
                         <div class="col-lg-8 file-space">
                             <div>
-                                현재 파일 : <a href={adminProgram.program_header_img_url} target="_blank" 
+                                현재 파일 : <a href={adminProgram.program_header_img_url_v2} target="_blank" 
                                     style="vertical-align: baseline;"
                                     class="c_blue">링크</a>
                             </div>

@@ -2,11 +2,10 @@
 <script>
 	import { link, push } from 'svelte-spa-router';
 	import { onDestroy, onMount } from 'svelte';
-	import { programIntroScrTop } from '../../store/moduleSlice';
-	import { getIntros } from '../../compositions/intro';
 	import { uiScr } from '../../compositions/scroll';
 	import Loding from '../common/loding.svelte';
 	import { programStore } from '../../store/adminSlice';
+	import { getProgram } from '../../compositions/admin';
 
   // 비동기변수
   let introAwait = null;
@@ -22,7 +21,7 @@
         window.addEventListener('scroll', scrollEvent);
     }
     onMount(async () => {
-        introAwait = await getIntros().then(({data}) => {
+        introAwait = await getProgram().then(({data}) => {
             console.log(data);
             categoryLeng = Object.values(data.data).length;
             categoryList = Object.values(data.data).map((v) => v.title);
@@ -73,15 +72,18 @@
                           })
                         }}
                       >
-                          <div class="img" style={`background-image: url(${pro.program_header_img_url_v2})`}></div>
-                          <div class="program-info">
-                              <h4 style={`color:${program.color}`}>{program.title}</h4>
-                              <h2>{pro.program_name}</h2>
-                          </div>
-                          <div class="c_gray">{pro.program_hash_tag}</div>
-                          {#if pro.program_new_label === 'Y'}
-                          <div class="new_bat">NEW</div>
-                          {/if}
+                            {#if pro.program_status === 'N'}
+                            <div class="hidden-wrap">숨김</div>
+                            {/if}
+                            <div class="img" style={`background-image: url(${pro.program_header_img_url_v2})`}></div>
+                            <div class="program-info">
+                                <h4 style={`color:${program.color}`}>{program.title}</h4>
+                                <h2>{pro.program_name}</h2>
+                            </div>
+                            <div class="c_gray">{pro.program_hash_tag}</div>
+                            {#if pro.program_new_label === 'Y'}
+                            <div class="new_bat">NEW</div>
+                            {/if}
                       </a>
                   </div>
                   {/each}
@@ -146,6 +148,17 @@
   .pos .product-row .product-container {
       position: relative;
       width: 25%;
+  }
+  .pos .product-row .product-container .hidden-wrap {
+    position:absolute;
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:80px;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.5);
   }
   .pos .product-row .product-container .new_bat {
       position: absolute;

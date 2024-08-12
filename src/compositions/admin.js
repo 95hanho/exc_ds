@@ -28,10 +28,14 @@ export const setStudentInfo = (obj) => put_urlFormData("/v1/expert/member/info",
 // 교육생 과정차수 등록 해주기
 export const adminAppRegist = (obj) => post_urlFormData("/v1/expert/member/info", obj);
 /*  */
+// 과정가져오기
+export const getProgram = () => get_normal(`v1/expert/program/info`);
 // 과정추가
 export const addProgram = (obj) => post_formData("/v1/expert/program/write", obj);
 // 과정수정
 export const setProgram = (obj) => post_formData("/v1/expert/program/modify", obj);
+// 과정 숨김
+export const programHide = (code) => get_normal(`/v1/expert/program/modify/${code}`);
 /*  */
 // 기본 설정 정보 가져오기
 export const getInitMonth = () => get_normal("/v1/expert/other/main");
@@ -39,11 +43,7 @@ export const getInitMonth = () => get_normal("/v1/expert/other/main");
 export const setInitMonth = (obj) => post_urlFormData("/v1/expert/other/month", obj);
 // 취소 사유 목록 엑셀다운로드
 export const cancelListDownload = (obj) => get_download("/v1/expert/other/excel/cancel", obj);
-// 메인팝업 설정 가져오기
-export const getMainPopup = () => get_normal("");
 // 메인팝업 설정 수정
 export const setMainPopup = (obj) => post_formData("/v1/expert/other/popup", obj);
-// 메인팝업 기존 파일삭제
-export const deleteMainPopup = (id) => delete_normal("");
 // 수강생 후기 작성
 export const addReview = (obj) => post_urlFormData("/v1/expert/other/review", obj);

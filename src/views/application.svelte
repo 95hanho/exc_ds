@@ -64,15 +64,16 @@
                         <p>
                             {moment(myApp.schedule_start_date).format('YYYY-MM-DD')}
                             {#if myApp.enrol_waiting_rank > 0}
-                            <span>대기 {myApp.enrol_waiting_rank}번째</span>
+                            <span class="fail">대기 {myApp.enrol_waiting_rank}번째</span>
+                            {:else}
+                            <span>수강 확정</span>
                             {/if}
                         </p>
                         {#if new Date() < new Date(myApp.schedule_start_date)}
                         <button 
                             on:click={() => modal_apply_cancer.open(myApp.schedule_code)}
-                            type="button" class="btn-close" data-bs-dismiss="alert"></button>    
+                            type="button" class="btn-cancer" data-bs-dismiss="alert">수강취소</button>    
                         {/if}
-                        
                     </div>
                 </div>
                 {/each}
@@ -92,7 +93,9 @@
                             <p>
                                 {moment(myApp.schedule_start_date).format('YYYY-MM-DD')}
                                 {#if myApp.enrol_waiting_rank > 0}
-                                <span>대기 {myApp.enrol_waiting_rank}번째</span>
+                                <span class="fail">대기 {myApp.enrol_waiting_rank}번째</span>
+                                {:else}
+                                <span>수강 확정</span>
                                 {/if}
                             </p>
                         </div>
@@ -137,11 +140,11 @@
 }
 /* 나의신청현황 */
 .alert {
-    padding: 10px 40px 26px 10px;
+    padding: 10px 80px 26px 10px;
 }
 .alert h5 {
     margin: 0;
-    word-break: keep-all;
+    word-break: break-all;
     font-size:16px;
 }
 .alert p {
@@ -155,10 +158,13 @@
     padding-left:10px;
 }
 .alert p span:first-child {
-    color:red;
+    color:blue;
     font-size:16px;
     font-weight: 900;
     text-decoration: underline;
+}
+.alert p span.fail:first-child {
+    color:red;
 }
 .col-md-4 {
     flex: 0 0 auto;
@@ -171,5 +177,20 @@
     text-decoration: underline;
 }
 /*  */
+/* 취소버튼 */
+.btn-cancer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    height: 100%;
+    padding:0 10px;
+    font-weight: 700;
+    color:#e71e1e;
+}
+.btn-cancer:hover {
+    text-decoration: underline;
+    font-weight: 900;
+}
 </style>
 
