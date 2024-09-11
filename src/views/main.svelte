@@ -46,7 +46,8 @@
         if(onUp) uiScr.mainNoticeSliceUp(noticeLeng);
         else uiScr.mainNoticeSliceDown(noticeLeng);
         noticeReStartIndex = setTimeout(() => {
-            noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
+            mainNoticeSlice_IntervalIndex();
+            // noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
         }, 5000);
     }
     const todayClose = () => {
@@ -68,9 +69,16 @@
             if(noticeLeng > 1) {
                 clearTimeout(noticeReStartIndex);
                 clearInterval(noticeSliceIndex);
-                noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
+                mainNoticeSlice_IntervalIndex();
+                // noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
             }
         }
+    }
+    const mainNoticeSlice_IntervalIndex = () => {
+        uiScr.mainNoticeSlice_act(noticeLeng);
+        noticeSliceIndex = setInterval(() => {
+            uiScr.mainNoticeSlice_Interval(noticeLeng);
+        }, 3500);
     }
     onMount(() => {
         clearTimeout(noticeReStartIndex);

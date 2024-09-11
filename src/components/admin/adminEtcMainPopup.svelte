@@ -21,6 +21,7 @@
         ui.fileReset('#popupFile2');
     }
     const initSet = () => {
+        console.log(pop_info)
         reset();
         file1_status = pop_info[1].status;
         initName = '현재: ' + pop_info[1].name;
@@ -37,8 +38,8 @@
             file1_status,
             file2_status,
         }
-        if(file1) obj.file1 = file1;
-        if(file2) obj.file2 = file2;
+        if(file1 && file1.length > 0) obj.file1 = file1;
+        if(file2 && file2.length > 0) obj.file2 = file2;
         setMainPopup(obj).then(({data}) => {
             console.log(data.msg);
             set_pop_info(1, 'status', file1_status);

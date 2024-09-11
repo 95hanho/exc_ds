@@ -50,8 +50,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="form-label col-form-label col-lg-4">비밀글 설정</label>
-                        <div class="col-lg-8">
+                        <label class="form-label col-form-label col-lg-2">비밀글 설정</label>
+                        <div class="col-lg-10">
                             <div class="onoffBtnDiv">
                                 <input
                                     type="checkbox"

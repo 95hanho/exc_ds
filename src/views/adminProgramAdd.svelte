@@ -37,7 +37,7 @@
         } else if(!c_f.program_hash_tag) {
             modal_alert.open('태그를 입력해주세요.');
             return;
-        } else if(!c_f.file) {
+        } else if(!c_f.file || c_f.file.length === 0) {
             modal_alert.open('제목이미지를 첨부 해주세요.');
             return;
         } else if(!c_f.program_meta_info.time) {

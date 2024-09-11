@@ -57,7 +57,7 @@
                     <thead>
                         <tr>
                             <th style="width: 2%;"></th>
-                            <th style="width: 18%;">변경날짜(2024년)</th>
+                            <th style="width: 18%;">변경날짜</th>
                             <th style="width: 5%;">차수</th>
                             <th style="width: 12%;">교육날짜</th>
                             <th style="width: 23%;">프로그램</th>

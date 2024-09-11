@@ -17,7 +17,7 @@
         file: null,
     }
 
-    const createNotice_before = () => {
+    const createNotice_before = async () => {
         const content = jQuery('.summernote').summernote('code');
         notice.content = content;
         if(!notice.title) {
@@ -25,16 +25,16 @@
         } else if(notice.content === '<p><br></p>') {
             modal_alert.open('내용이 입력되지 않았습니다.');
         } else {
-            if(notice.file?.length) $onAllLoding = true;
-            addQna(notice).then(({data}) => {
+            $onAllLoding = true;
+            await addQna(notice).then(({data}) => {
                 if(notice.file?.length) {
                     noticeFileUpload({ id: data.data.id, file: notice.file})
                     .then(({data}) => {
-                        $onAllLoding = false;
                         push('/notice/1');
                     });
                 } else push('/notice/1');
             });
+            $onAllLoding = false;
         }
     }
 

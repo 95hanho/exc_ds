@@ -140,6 +140,28 @@ export const uiScr = {
 		}, 3500);
 		return result;
 	},
+	mainNoticeSlice_act(noticeLeng) {
+		$("#notice ul").css("top", `${-70 * (this.curNum + noticeLeng - 1)}px`);
+	},
+	mainNoticeSlice_Interval(noticeLeng) {
+		if ($("#notice ul").length > 0) {
+			// let that = this;
+			$("#notice ul").animate(
+				{
+					top: $("#notice ul").position().top - 70,
+				},
+				1500,
+				"easeInCubic",
+				function () {
+					uiScr.curNum++;
+					if (uiScr.curNum > noticeLeng) {
+						$("#notice ul").css("top", `${-70 * noticeLeng}px`);
+						uiScr.curNum = 1;
+					}
+				}
+			);
+		}
+	},
 	mainNoticeSliceUp(noticeLeng) {
 		if (this.curNum <= -1 * noticeLeng) return;
 		--this.curNum;

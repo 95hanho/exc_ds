@@ -25,7 +25,7 @@
     let initFile = []; // 처음 파일
 
     // 수정완료
-    const updateNotice_before = () => {
+    const updateNotice_before = async () => {
         const content = jQuery('.summernote').summernote('code');
         notice.content = content;
         if(!notice.title) {
@@ -33,12 +33,11 @@
         } else if(notice.content === '<p><br></p>') {
             modal_alert.open('내용이 입력되지 않았습니다.');
         } else {
-            if(notice.file?.length) $onAllLoding = true;
-            updateNoticeQna(notice).then(({data}) => {
+            $onAllLoding = true;
+            await updateNoticeQna(notice).then(({data}) => {
                 if(notice.file?.length) {
                     noticeFileUpload({ id: data.data.id, file: notice.file})
                         .then(({data}) => {
-                            $onAllLoding = false;
                             if(page) push(`/notice/${page}/${noticeId}`);
                             else push(`/notice/1/${noticeId}`);
                         });
@@ -47,6 +46,7 @@
                     else push(`/notice/1/${noticeId}`);
                 }
             });
+            $onAllLoding = false;
         }
     }
 
