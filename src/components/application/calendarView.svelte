@@ -85,7 +85,7 @@
     let init = true; // 초기 두번 조회 방지
     let currentMonth = "";
     const changeMonth = (info) => {
-        currentMonth = info.view.title.split(" ")[1][0];
+        currentMonth = info.view.title.split(" ")[1].replace('월', '');
         if(!init) {
             getProgram(currentMonth).then(({data}) => {
                 allProgramList = data.data;
