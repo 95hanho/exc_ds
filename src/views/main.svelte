@@ -41,8 +41,7 @@
         }
     }
     const mainNoticeSliceUpDown = (onUp) => {
-        clearTimeout(noticeReStartIndex);
-        clearInterval(noticeSliceIndex);
+        clearNotice();
         if(onUp) uiScr.mainNoticeSliceUp(noticeLeng);
         else uiScr.mainNoticeSliceDown(noticeLeng);
         noticeReStartIndex = setTimeout(() => {
@@ -62,13 +61,10 @@
         document.addEventListener('visibilitychange', visibilitychange_fnc);
     }
     const visibilitychange_fnc = () => {
-        if (document.hidden) {
-            clearTimeout(noticeReStartIndex);
-            clearInterval(noticeSliceIndex);
-        } else {
+        if (document.hidden) clearNotice();
+        else {
             if(noticeLeng > 1) {
-                clearTimeout(noticeReStartIndex);
-                clearInterval(noticeSliceIndex);
+                clearNotice();
                 mainNoticeSlice_IntervalIndex();
                 // noticeSliceIndex = uiScr.mainNoticeSlice(noticeLeng);
             }
@@ -80,9 +76,12 @@
             uiScr.mainNoticeSlice_Interval(noticeLeng);
         }, 3500);
     }
-    onMount(() => {
+    const clearNotice = () => {
         clearTimeout(noticeReStartIndex);
         clearInterval(noticeSliceIndex);
+    }
+    onMount(() => {
+        clearNotice();
         mainInitAwait = mainInit().then(({data}) => {
             noticeLeng = data.data.notice_latest.length;
             return data.data;
@@ -95,8 +94,7 @@
         }
     });
     onDestroy(() => {
-        clearTimeout(noticeReStartIndex);
-        clearInterval(noticeSliceIndex);
+        clearNotice();
     });
 </script>
 

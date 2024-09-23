@@ -119,6 +119,7 @@ export const uiScr = {
 	/*  */
 	// 메인공지사항 자동슬라이드
 	curNum: 1,
+	/* 
 	mainNoticeSlice(noticeLeng) {
 		$("#notice ul").css("top", `${-70 * (this.curNum + noticeLeng - 1)}px`);
 		let that = this;
@@ -140,6 +141,7 @@ export const uiScr = {
 		}, 3500);
 		return result;
 	},
+	 */
 	mainNoticeSlice_act(noticeLeng) {
 		$("#notice ul").css("top", `${-70 * (this.curNum + noticeLeng - 1)}px`);
 	},
@@ -163,7 +165,7 @@ export const uiScr = {
 		}
 	},
 	mainNoticeSliceUp(noticeLeng) {
-		if (this.curNum <= -1 * noticeLeng) return;
+		if (this.curNum <= -1 * noticeLeng + 1) return;
 		--this.curNum;
 		let that = this;
 		$("#notice ul")
