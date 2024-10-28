@@ -192,5 +192,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: pointer;
+    white-space: nowrap;
 }
 </style>

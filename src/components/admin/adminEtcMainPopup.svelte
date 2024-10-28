@@ -176,6 +176,7 @@ h2 {
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: pointer;
+    white-space: nowrap;
 }
 .init-filemark.right {
     left: 150px;

@@ -5,6 +5,7 @@
     import AdminEtcCancelList from "./adminEtcCancelList.svelte";
     import { onMount } from "svelte";
     import { getInitMonth } from "../../compositions/admin";
+	import AdminEtcReportUrl from "./adminEtcReportUrl.svelte";
 
     let default_month = undefined;
     let pop_info = undefined;
@@ -39,6 +40,10 @@
     <section>
         <!-- 메인팝업설정 -->
         <AdminEtcMainPopup {pop_info} {set_pop_info}/>
+    </section>
+    <hr>
+    <section>
+        <AdminEtcReportUrl />
     </section>
     <hr>
     <section>
