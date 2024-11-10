@@ -55,7 +55,6 @@
             {/if}
         </div>
     </div>
-    
 </nav>
 <!-- END navInfo -->
 
