@@ -9,13 +9,7 @@
     export let onNoImage;
 
     const login_form = () => {
-        if(new URLSearchParams($querystring).get('type') === 'login') {
-            modal_login.open();
-        } else {
-            loginPage().then(({ data }) => {
-                window.location.href = data.data;
-            });
-        }
+        modal_login.open();
     };
 </script>
 
