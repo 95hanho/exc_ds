@@ -29,13 +29,16 @@
     }
   
   const resetForm = () => {
-    memb.id = "";
-    memb.password = "";
+    memb.id = "admin";
+    memb.password = "1234";
     alertMent = "";
   }
 
   const login_before = () => {
-    login(memb).then(({data}) => {
+    login({
+      login_id:memb.id,
+      login_pwd:memb.password,
+    }).then(({data}) => {
       cookies.set('adminLogin', 'on', 60 * 60 * 24);
       loginOn.login(data.access_token, data.refresh_token, data.exception === 'ADMIN' ? true : false);
       close();
