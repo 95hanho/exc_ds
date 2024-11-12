@@ -27,6 +27,8 @@
         } else {
             $onAllLoding = true;
             await addQna(notice).then(({data}) => {
+                console.log(data);
+                return;
                 if(notice.file?.length) {
                     noticeFileUpload({ id: data.data.id, file: notice.file})
                     .then(({data}) => {
