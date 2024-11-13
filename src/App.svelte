@@ -23,9 +23,6 @@
     || $location.startsWith('/talktalk/write')
     || $location.startsWith('/notPage');
 
-    onMount(() => {
-        ui.tapTitle();
-    });
 </script>
 
 <style>

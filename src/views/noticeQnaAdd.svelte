@@ -18,7 +18,7 @@
         } else if(!qna.content) {
             modal_alert.open('내용이 입력되지 않았습니다.');
         } else {
-            qna.is_secret = secret ? 'Y' : 'N';
+            qna.secret = secret;
             qna.content = qna.content.trim().replaceAll('\n', '<br>');
             addQna(qna).then(({data}) => {
                 modal_alert.open('QnA 작성이 완료되었습니다.');

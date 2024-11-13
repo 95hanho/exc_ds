@@ -22,6 +22,7 @@
         }
     }
     $:noticeAwait = getNotices({page, size:11}).then(({data}) => {
+        console.log(data);
         initFnc(data.data.total_pages, data.data.total_record)
         return data.data.list
     }).catch((err) => {

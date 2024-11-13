@@ -73,6 +73,7 @@
     $:noticeAwait = setNoticeAwait(nId);
     const setNoticeAwait = (nId) => {
         return getNotice(nId).then(({data}) => {
+            console.log(data);
             setCommentModifyTxtList(data.data.comment_list.length);
             data.data.comment_list.map((v) => {
                 v.modify = false;
