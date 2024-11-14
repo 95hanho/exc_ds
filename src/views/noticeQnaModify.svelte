@@ -22,7 +22,7 @@
         } else if(!qna.content) {
             modal_alert.open('내용이 입력되지 않았습니다.');
         } else {
-            qna.is_secret = secret ? 'Y' : 'N';
+            qna.secret = secret;
             qna.content = qna.content.replaceAll('\n', '<br>');
             updateNoticeQna(qna).then(({data}) => {
                 if(page) push(`/notice/${page}/${qnaId}`);

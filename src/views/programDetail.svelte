@@ -16,6 +16,7 @@
     let items = Array.from({length:repeatCount}, (_, index) => 10 - index);
 
     $: detailAwait = getIntroDetail(params.pNum).then(({data}) => {
+
         return data.data;
     }).catch((err) => {
         modal_alert.open('잘못된 접근입니다.');

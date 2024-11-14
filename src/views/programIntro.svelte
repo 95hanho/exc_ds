@@ -34,9 +34,10 @@
     }
     onMount(async () => {
         introAwait = await getIntros().then(({data}) => {
+
             categoryLeng = Object.values(data.data).length;
             scrollEvent = uiScr.programIntroScroll.bind(window, categoryLeng);
-            return Object.values(data.data);
+            return data.data;
         });
     });
     onDestroy(() => {

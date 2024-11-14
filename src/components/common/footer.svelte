@@ -4,7 +4,6 @@
 
 <footer id="footer">
     <div class="footer-wrap">
-        <p>문의처 010-8340-9033 / dsld01.sec@samsung.com</p>
         <p>copyright © {year} all rights reserved.</p>
     </div>
 </footer>
