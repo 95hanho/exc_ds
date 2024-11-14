@@ -41,6 +41,8 @@
     <!-- END breadcrumb -->
 
     <!-- BEGIN panel -->
+    {#if false}
+        
     <div class="panel panel-inverse" data-sortable-id="ui-general-2">
         <!-- BEGIN panel-heading -->
         <div class="panel-heading">
@@ -114,7 +116,8 @@
         {/await}
         <!-- END panel-body -->
     </div>
-    <!-- END panel -->
+    {/if}
+     <!-- END panel -->
     {#if params?.viewForm === 'list'}
     <ListView {reMyApplication}/>
     {:else if params?.viewForm === 'calendar'}

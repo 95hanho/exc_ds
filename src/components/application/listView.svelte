@@ -157,7 +157,7 @@
         window.addEventListener('scroll', uiScr.listViewHeaderFixed);
     }
     onMount(async () => {
-        await initData(0);
+        await initData(10);
         const urlParams = new URLSearchParams($querystring);
         const content = urlParams.get('content');
         selectCourse = content || "";

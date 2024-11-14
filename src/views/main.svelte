@@ -82,10 +82,10 @@
     }
     onMount(() => {
         clearNotice();
-        // mainInitAwait = mainInit().then(({data}) => {
-        //     noticeLeng = data.data.notice_latest.length;
-        //     return data.data;
-        // });
+        mainInitAwait = mainInit().then(({data}) => {
+            noticeLeng = data.data.notice_latest.length;
+            return data.data;
+        });
         if(!$loginOn && new URLSearchParams($querystring).get('type') === 'login') {
             modal_login.open();
             cookies.set('adminLogin', 'on', 60 * 60 * 24);
