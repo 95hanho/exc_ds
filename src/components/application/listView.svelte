@@ -97,6 +97,7 @@
     const apply_before = async (index, code) => {
         onAllLoding.set(true);
         await programApply(code).then(({data}) => {
+
             if(data.code === 403) {
                 modal_alert.open('최대 3개까지의 과정을 신청할 수 있습니다.<br>기존의 과정을 취소 후 신청해주세요.');
                 return;

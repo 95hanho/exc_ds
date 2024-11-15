@@ -185,8 +185,8 @@
         });
     }
     onMount(async () => {
-        getProgram(0).then(({data}) => {
-            calendar = ui.calendarInit(clickEvent, data.select_month, changeMonth);
+        getProgram(10).then(({data}) => {
+            calendar = ui.calendarInit(clickEvent, 11, changeMonth);
             allProgramList = data.data;
             programList = allProgramList.map((v, i) => {
                 v.indexNum = i;

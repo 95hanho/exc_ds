@@ -41,8 +41,6 @@
     <!-- END breadcrumb -->
 
     <!-- BEGIN panel -->
-    {#if false}
-        
     <div class="panel panel-inverse" data-sortable-id="ui-general-2">
         <!-- BEGIN panel-heading -->
         <div class="panel-heading">
@@ -71,11 +69,9 @@
                             <span>수강 확정</span>
                             {/if}
                         </p>
-                        {#if new Date() < new Date(myApp.schedule_start_date)}
                         <button 
                             on:click={() => modal_apply_cancer.open(myApp.schedule_code)}
                             type="button" class="btn-cancer" data-bs-dismiss="alert">수강취소</button>    
-                        {/if}
                     </div>
                 </div>
                 {/each}
@@ -116,7 +112,6 @@
         {/await}
         <!-- END panel-body -->
     </div>
-    {/if}
      <!-- END panel -->
     {#if params?.viewForm === 'list'}
     <ListView {reMyApplication}/>
