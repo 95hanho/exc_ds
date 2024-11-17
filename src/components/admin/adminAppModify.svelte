@@ -61,7 +61,7 @@
         } else {
             const obj = {
                 schedule_code: program.schedule_code,
-                schedule_start_date: startDate,
+                schedule_start_date: new Date(startDate),
                 time : program.time,
                 online: program.online,
                 part_type: program.part_type,
@@ -69,7 +69,7 @@
                 schedule_number: program.schedule_number,
             }
             if(endDate)
-                obj.schedule_start_date_add_date = endDate;
+                obj.schedule_start_date_add_date = new Date(endDate);
             if(addDates.length > 1)
                 obj.schedule_after_date = addDates.slice(0, addDates.length - 1).sort();
             setAdminApp(obj).then(({data}) => {
@@ -152,7 +152,7 @@
         flatpickr("#datepicker2", {defaultDate:endDate, ...datePickerSetting, 
             now: program.schedule_start_date_add_date 
             ? new Date(program.schedule_start_date_add_date) : new Date()});
-        if(program.schedule_after_date.length) {
+        if(program.schedule_after_date && program.schedule_after_date.length) {
             addDates = program.schedule_after_date.map((v, i) => {
                 const format = moment(v).format(dateFormat);
                 flatpickr(`#addDate${i}`, {defaultDate:format, ...datePickerSetting, now: new Date(format)});

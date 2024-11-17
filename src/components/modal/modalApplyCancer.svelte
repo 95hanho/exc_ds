@@ -49,6 +49,7 @@
             } else {
                 enrol_obj.reason = pickCancel;
             }
+            console.log(123213);
             applyCancel(enrol_obj).then(({data}) => {
                 cancel();
             });
