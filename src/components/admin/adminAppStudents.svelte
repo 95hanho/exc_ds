@@ -75,7 +75,7 @@
     // 출결 변경
     const changePresent = (type, member_no, schedule_code) => {
         setPresent({
-            member_no, schedule_code, type
+            member_no: [member_no], schedule_code, type
         }).then(({data}) => {
             presentCount();
         });
@@ -83,7 +83,7 @@
     // 출결변경 텍스트
     const changePresentTxt = (type, description, member_no, schedule_code) => {
         setPresent({
-            member_no, schedule_code, description, type
+            member_no: [member_no], schedule_code, description, type
         });
     }
     // 신청명단 삭제
