@@ -122,6 +122,7 @@
         resetModalStatus();
         console.log(store_student);
         console.log(changeUser);
+        console.log(curProgram);
         setEnrollStudent({
             enroll_id: store_student.enrol_id,
             to_member_no: changeUser.member_no
