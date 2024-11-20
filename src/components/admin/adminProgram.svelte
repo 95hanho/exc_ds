@@ -26,7 +26,7 @@
             categoryLeng = Object.values(data.data).length;
             categoryList = Object.values(data.data).map((v) => v.title);
             scrollEvent = uiScr.programIntroScroll.bind(window, categoryLeng);
-            return Object.values(data.data);
+            return data.data;
         });
     });
     onDestroy(() => {
@@ -64,12 +64,13 @@
                       use:link class="product program" data-bs-toggle="modal" data-bs-target="#modalPos"
                         on:click={() => {
                           programStore.set({
-                            program_category:program.title,
                             ...pro,
+                            program_category:program.title,
                             categoryList,
                             ordering: proIndex + 1,
                             ordering_list: program.list,
-                          })
+                          });
+                          console.log($programStore);
                         }}
                       >
                             {#if pro.program_status === 'N'}

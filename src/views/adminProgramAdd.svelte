@@ -56,8 +56,10 @@
                 ...c_f.program_meta_info
             }
             delete c_f.program_meta_info;
+            console.log(c_f);
             addProgram(c_f).then((data) => {
-                console.log(data);
+                // console.log(data);
+                // return;
                 replace('/admin/program');
             }).catch((err) => {
                 modal_alert.open('실패!!!');

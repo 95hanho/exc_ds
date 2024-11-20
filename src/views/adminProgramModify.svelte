@@ -68,8 +68,8 @@
             }
             delete c_f.program_meta_info;
             delete c_f.categroy_bg_url;
+            console.log(c_f);
             setProgram(c_f).then((data) => {
-                console.log(data);
                 push('/admin/program');
             }).catch((err) => {
                 modal_alert.open('실패!!!');
@@ -84,6 +84,7 @@
         initializeSummernote();
     }
     const getInit = async () => {
+        console.log($programStore.program_category);
         if($programStore.program_category) {
             let obj = {};
             obj = { ...$programStore};
@@ -105,8 +106,10 @@
 
     // 과정숨김처리
     $: if($modal_confirm_result === 'programHide') {
+        console.log(params.pNum);
         programHide(params.pNum).then(({data}) => {
             console.log(data);
+            return;
             replace('/admin/program');
             $modal_confirm_result = "";
         });
