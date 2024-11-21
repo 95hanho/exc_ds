@@ -11,9 +11,9 @@
         years.push(year);
     }
 
-    const cancelListDownload_before = () => {
+    const cancelListDownload_before = async () => {
         onAllLoding.set(true);
-        cancelListDownload({
+        await cancelListDownload({
             year: selectYear,
             month: selectMonth
         }).then(({data}) => {
@@ -24,8 +24,8 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            onAllLoding.set(false);
         });
+        onAllLoding.set(false);
     }
 
     onMount(() => {

@@ -15,7 +15,7 @@
 
     onMount(() => {
         getInitMonth().then(({data}) => {
-            // console.log(data);
+            console.log(data);
             default_month = data.data.default_month;
             pop_info = {};
             data.data.pop_info.map((v) => {

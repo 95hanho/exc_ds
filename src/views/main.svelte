@@ -219,7 +219,7 @@
             </div>
             <div class="content">
                 <!-- 608 731.84 -->
-                {@html data?.popup_list[0].html}
+                <img src={data.popup_list[0]} alt="1번팝업">
                 <!-- <img  width="608" height="731.84" src="https://dsedu.exc.co.kr/images/popup_240204_v1.png" alt=""> -->
             </div>
             <div class="bottom">
@@ -241,7 +241,7 @@
                         }} class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
                 <div class="content">
-                    {@html data?.popup_list[1].html}
+                    <img src={data.popup_list[1]} alt="2번팝업">
                 </div>
                 <div class="bottom">
                     <input id="todayClose2" type="checkbox"
