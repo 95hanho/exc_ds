@@ -1,10 +1,10 @@
 <script>
 	import { mainInit } from './../compositions/dsMain.js';
 	import { push, querystring, replace } from 'svelte-spa-router';
-    import arrow from '~assets/img/arrow.png';
-    import main1_bt from '~assets/img/main_bnr_bg.png';
-    import main1_icon from '~assets/img/main_icon01.png';
-    import main2_icon from '~assets/img/main_icon02.png';
+    import arrow from '/template/img/arrow.png';
+    import main1_bt from '/template/img/main_bnr_bg.png';
+    import main1_icon from '/template/img/main_icon01.png';
+    import main2_icon from '/template/img/main_icon02.png';
 
     import { loginOn } from '../store/userSlice';
     import { modal_alert, modal_login } from '../store/modalSlice';

@@ -1,7 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import TabMenu from '../components/common/tabMenu.svelte';
-    import image5 from '../assets/img/A001_01_img_05.jpg';
+    import image5 from '/template/img/A001_01_img_05.jpg';
     import 'font-awesome/css/font-awesome.css';
     import { onMount } from 'svelte';
     import { getIntroDetail } from '../compositions/intro';
@@ -238,12 +238,10 @@
     padding: 0.3rem 0.2rem;
     margin: 0;
     font-family: FontAwesome;
-    /* background-image: url("/src/assets/img/star_off.png"); */
     content: "\f005 ";
 }
 .rate .half:before {
     content: "\f089 ";
-    /* background-image: url("/src/assets/img/star_on.png"); */
     position: absolute;
     padding-right: 0;
 }

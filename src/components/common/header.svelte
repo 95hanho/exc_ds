@@ -1,6 +1,6 @@
 <script>
 	import { link, location, push } from 'svelte-spa-router';
-    import home_btn from '../../assets/img/lead_logo.png';
+    import home_btn from '/template/img/lead_logo.png';
     import { loginOn, userName } from '../../store/userSlice.js';
     import 'bootstrap-icons/font/bootstrap-icons.css'
     import 'font-awesome/css/font-awesome.css';

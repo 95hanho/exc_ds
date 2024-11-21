@@ -1,8 +1,8 @@
 <script>
 	import { modal_login } from '../../store/modalSlice.js';
     import { location, push, querystring } from 'svelte-spa-router';
-    import login_btn from '../../assets/img/btn_login.png'
-    import main_title from '../../assets/img/title.png'
+    import login_btn from '/template/img/btn_login.png'
+    import main_title from '/template/img/title.png'
     import { loginPage } from '../../compositions/user.js';
     import { grant, loginOn } from '../../store/userSlice.js';
 
@@ -71,20 +71,20 @@
     position: relative;
     width:100%;
     height: 271px;
-    background: url(../../assets/img/sub_main_img.jpg) no-repeat 50% 50%;
+    background: url(/template/img/sub_main_img.jpg) no-repeat 50% 50%;
 }
 #nav.main {
-    background-image: url(../../assets/img/main_img.png);
+    background-image: url(/template/img/main_img.png);
     height: 365px;
 }
 #nav.sub1 {
-    background: url(../../assets/img/sub_img_01.jpg) no-repeat 50% 50%;
+    background: url(/template/img/sub_img_01.jpg) no-repeat 50% 50%;
 }
 #nav.sub2 {
-    background: url(../../assets/img/sub_img_02.jpg) no-repeat 50% 50%;
+    background: url(/template/img/sub_img_02.jpg) no-repeat 50% 50%;
 }
 #nav.sub3 {
-    background: url(../../assets/img/sub_img_03.jpg) no-repeat 50% 50%;
+    background: url(/template/img/sub_img_03.jpg) no-repeat 50% 50%;
 }
 #nav.noImage {
     height: 0;

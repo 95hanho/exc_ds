@@ -2,7 +2,6 @@
 	import { onAllLoding } from './store/moduleSlice.js';
 	import { loginOn, userName } from './store/userSlice.js';
 	import Modal from './components/modal/modal.svelte';
-    // import user_1 from "~assets/img/user/user-1.jpg";
     import Header from "./components/common/header.svelte";
     import Nav from "./components/common/nav.svelte";
     import Router, { location } from 'svelte-spa-router';
