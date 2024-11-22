@@ -94,7 +94,7 @@
         console.log({list: excelData});
         await addProgramSchedules({list: excelData}).then(({data}) => {
             console.log(data);
-            if(data.data.fail_list?.length) {
+            if(data?.data?.fail_list?.length) {
                 const message = data.data.fail_list.reduce((acc, cur, i) => {
                     if(i > 0) acc = acc + '<br>';
                     acc = acc + cur;
@@ -102,7 +102,6 @@
                 }, '');
                 modal_alert.open(message);
             } else excel.setData([[]]);
-            
         });
         onAllLoding.set(false);
     }

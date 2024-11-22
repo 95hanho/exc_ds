@@ -109,7 +109,6 @@
         console.log(params.pNum);
         programHide(params.pNum).then(({data}) => {
             console.log(data);
-            return;
             replace('/admin/program');
             $modal_confirm_result = "";
         });
