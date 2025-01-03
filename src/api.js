@@ -5,7 +5,7 @@ import { modal_alert } from "./store/modalSlice";
 
 const instance = axios.create({
 	// baseURL: "https://ds-api.exc.co.kr",
-	baseURL: "http://localhost:9368",
+	baseURL: process.env.VITE_BASEURL,
 });
 // 토큰체크 안하는 url
 const notTokenCheckUrl = [
@@ -25,7 +25,7 @@ instance.interceptors.request.use(
 			await loginOn.tokenCheck();
 		}
 		const aToken = loginOn.getAtoken();
-		if (aToken) res.headers["Expert-Access"] = aToken;
+		if (aToken) res.headers.Authorization = aToken;
 
 		return res;
 	},
