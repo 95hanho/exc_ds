@@ -28,9 +28,8 @@
         onAllLoding.set(false);
     }
 
-    onMount(() => {
-    })
 </script>
+
 
 <div id="adminEtcProgramSet">
     <h2>취소사유목록 엑셀다운로드</h2>
