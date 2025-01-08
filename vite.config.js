@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
     build: {
       // outDir: "../frontend",
       // assetsDir: "",
-      // copyPublicDir: false,
+      copyPublicDir: false,
     },
     // server: {
     //     proxy: {
