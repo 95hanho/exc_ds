@@ -46,6 +46,9 @@ instance.interceptors.response.use(
 			push("/");
 			return;
 		}
+		if (err.response.status === 403) {
+			modal_alert.open("권한이 없습니다.");
+		}
 		return Promise.reject(err.response.data?.msg);
 	}
 );
