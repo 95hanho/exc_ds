@@ -1,3 +1,0 @@
-colorAdminApp.controller('pageWithBoxedLayoutController', function ($scope, $rootScope, $state) {
-  $rootScope.setting.layout.appBoxedLayout = true;
-});

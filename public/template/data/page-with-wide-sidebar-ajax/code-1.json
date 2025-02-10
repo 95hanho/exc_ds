@@ -1,6 +1,0 @@
-&lt;script&gt;
-  App.setPageOption({
-    appSidebarWide: true,
-    clearOptionOnLeave: true
-  });
-&lt;/script&gt;

@@ -74,10 +74,10 @@ export const ui = {
 				}
 				ce(valueNum);
 			},
-			validRange: {
-				start: `${now.getFullYear()}-01-01`,
-				end: `${now.getFullYear()}-12-31`,
-			},
+			// validRange: {
+			// 	start: `${now.getFullYear()}-01-01`,
+			// 	end: `${now.getFullYear()}-12-31`,
+			// },
 			// events: ,
 			eventMouseEnter: handleEventMouseEnter,
 			eventMouseLeave: handleEventMouseLeave,
@@ -99,7 +99,9 @@ export const ui = {
 					if (classList[i] === "enroll") enrollStatus = true;
 				}
 				if (enrollStatus) {
-					$(info.el).prepend(`<span class="limit_count"><i class="icon-check h3 d-block"></i></span>`);
+					$(info.el).prepend(
+						`<span class="limit_count"><i class="icon-check h3 d-block"></i></span>`
+					);
 				} else {
 					$(info.el).prepend(`<span class="limit_count box" ${remainColor}>${count}</span>`);
 				}
@@ -141,7 +143,8 @@ export const ui = {
 				$(document).off("click");
 			});
 			$(".content .content_wrap").scrollTop(
-				$(`.jexcel tbody tr:eq(${i}) td:eq(${j + 1})`).position().top - $(".content .content_wrap").height() / 2
+				$(`.jexcel tbody tr:eq(${i}) td:eq(${j + 1})`).position().top -
+					$(".content .content_wrap").height() / 2
 			);
 		}, 200);
 	},

@@ -1,9 +1,0 @@
-&lt;div id="sidebar" class="app-sidebar"&gt;
-  &lt;div class="menu"&gt;
-    &lt;div class="menu-search mb-n3"&gt;
-      &lt;input type="text" class="form-control" placeholder="Sidebar menu filter..." data-sidebar-search="true"&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  ...
-&lt;/div&gt;
-&lt;div class="app-sidebar-bg"&gt;&lt;/div&gt;

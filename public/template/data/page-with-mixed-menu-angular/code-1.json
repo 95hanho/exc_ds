@@ -1,3 +1,0 @@
-colorAdminApp.controller('pageWithMixedMenuController', function ($scope, $rootScope, $state) {
-  $rootScope.setting.layout.appTopMenu = true;
-});

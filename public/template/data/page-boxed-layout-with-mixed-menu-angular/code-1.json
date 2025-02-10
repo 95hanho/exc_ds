@@ -1,4 +1,0 @@
-colorAdminApp.controller('pageBoxedLayoutWithMixedMenuController', function ($scope, $rootScope, $state) {
-  $rootScope.setting.layout.appBoxedLayout = true;
-  $rootScope.setting.layout.appTopMenu = true;
-});

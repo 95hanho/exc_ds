@@ -57,7 +57,7 @@
 
 </script>
 
-<div class="modal" bind:this={modalEle}>
+<div id="modalApplyCancer" class="modal" bind:this={modalEle}>
     <button
         class="modal-background"
         on:click={close}

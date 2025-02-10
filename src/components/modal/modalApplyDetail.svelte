@@ -62,7 +62,7 @@
     }
 </script>
 
-<div class="modal" bind:this={modalEle}>
+<div id="modalApplyDetail" class="modal" bind:this={modalEle}>
     <button
         class="modal-background"
         on:click={() => close()}
@@ -113,7 +113,7 @@
                                 <tr>
                                     <td><b>교육시간</b></td>
                                     <td>{program.time ? program.time +' H' : ''}
-                                        {new Date('2024-05-01 00:00:00') < new Date(program.schedule_start_date) ? `(${moment(program.schedule_start_date).format('a')})` : ''}    
+                                        {program.time < 8 && new Date('2024-05-01 00:00:00') < new Date(program.schedule_start_date) ? `(${moment(program.schedule_start_date).format('a')})` : ''}    
                                     </td>
                                 </tr>
                                 <tr>

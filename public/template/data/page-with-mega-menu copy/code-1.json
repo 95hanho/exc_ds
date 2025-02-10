@@ -1,3 +1,0 @@
-colorAdminApp.controller('pageWithMegaMenuController', function ($scope, $rootScope, $state) {
-  $rootScope.setting.layout.appHeaderMegaMenu = true;
-});

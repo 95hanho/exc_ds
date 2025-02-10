@@ -79,7 +79,7 @@
                     } else if(j == 3) {
                         applyEndDate = new Date(v);
                         if(cStartDate < applyStartDate || cStartDate < applyEndDate) {
-                            modal_alert.open(`수강시작일은 수강신청 기간 뒤여야 합니다. ${excelLocate(i, 1)}`);
+                            modal_alert.open(`강의시작일은 수강신청 기간 뒤여야 합니다. ${excelLocate(i, 1)}`);
                             onAllLoding.set(false);
                             return;
                         } else if(applyStartDate > applyEndDate) {
@@ -112,10 +112,10 @@
         troubleJ = jIndex;
         switch(jIndex) {
             case 0: return `<br>위치 : ${index + 1}번줄 차수`;
-            case 1: return `<br>위치 : ${index + 1}번줄 수강시작일`;
+            case 1: return `<br>위치 : ${index + 1}번줄 강의시작일`;
             case 2: return `<br>위치 : ${index + 1}번줄 수강신청시작일`;
             case 3: return `<br>위치 : ${index + 1}번줄 수강신청종료일`;
-            case 4: return `<br>위치 : ${index + 1}번줄 수강인원 최대 인원`;
+            case 4: return `<br>위치 : ${index + 1}번줄 정원`;
             case 5: return `<br>위치 : ${index + 1}번줄 합반(6)/그룹장(4)/파트장(2) 구분`;
             case 6: return `<br>위치 : ${index + 1}번줄 프로그램 코드`;
             case 7: return `<br>위치 : ${index + 1}번줄 대면(N)/비대면(Y)`;
@@ -140,16 +140,16 @@
             data: initData,
             columns: [
                 { type: 'text', title: '차수' },
-                { type: 'text', title: '수강시작일' },
+                { type: 'text', title: '강의시작일' },
                 { type: 'text', title: '수강신청시작일' },
                 { type: 'text', title: '수강신청종료일' },
-                { type: 'text', title: '수강인원 최대 인원' },
+                { type: 'text', title: '정원' },
                 { type: 'text', title: '합반(6)/그룹장(4)/파트장(2)' },
                 { type: 'text', title: '프로그램코드' },
                 { type: 'text', title: '대면(N)/비대면(Y)' },
                 { type: 'text', title: '교육시간(시간)' },
             ],
-            colWidths: ['4%', '15%', '15%', '15%', '10%', '15%', '8%', '10%', '8%',]
+            colWidths: ['4%', '17%', '17%', '17%', '4%', '15%', '8%', '10%', '8%',]
         });
         // console.log(excel);
     });

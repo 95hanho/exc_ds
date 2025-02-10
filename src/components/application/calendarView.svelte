@@ -4,6 +4,7 @@
 	import { modal_apply_cancer_result, modal_apply_detail, modal_apply_detail_obj, modal_apply_detail_result } from '../../store/modalSlice.js';
 	import { ui } from './../../compositions/ui.js';
     import { onMount } from 'svelte';
+	import moment from 'moment/moment';
 
     export let reMyApplication;
 
@@ -13,7 +14,7 @@
     let bunya = [true, false, false, false, false]; // 분야 구별
     let sugang = [true, false, false]; // 수강 관리
     let online = [true, false, false]; // 온라인/오프라인
-    let eduTime = [true, false, false, false]; // 교육시간
+    let eduTime = [true, false, false, false, false]; // 교육시간
     function clickTrueAllFalseFilter(list, index) {
         return list = list.map((v, i) => {
             if(index === i) return true;
@@ -65,11 +66,14 @@
             } else if(online[2]) {
                 if(pg.online !== 'N') return false;
             }
+            const ampm = moment(pg.schedule_start_date).format('a');
             if(eduTime[1]) {
-                if(pg.time !== 4) return false;
+                if(pg.time !== 4 || ampm == "오후") return false;
             } else if(eduTime[2]) {
-                if(pg.time !== 8) return false;
+                if(pg.time !== 4 || ampm == "오전") return false;
             } else if(eduTime[3]) {
+                if(pg.time !== 8) return false;
+            } else if(eduTime[4]) {
                 if(pg.time !== 16) return false;
             }
             return true;
@@ -96,7 +100,7 @@
                 bunya = [true, false, false, false, false];
                 sugang = [true, false, false];
                 online = [true, false, false];
-                eduTime = [true, false, false, false];
+                eduTime = [true, false, false, false, false];
             });
         }
         init = false;
@@ -115,11 +119,11 @@
         return programList.map((v, i) => {
             /* 분야별 색 */
             let color = "";
-            if (v.schedule_status === true) color = "#E6E6E6";
-            else if (v.group_title === "사업/경영") color = "#5693F5";
-            else if (v.group_title === "산업/기술") color = "#FFA319";
-            else if (v.group_title === "리더십/조직문화") color = "#EB493B";
-            else if (v.group_title === "인문/소양") color = "#A046B0";
+            if (v.schedule_status === true) color = "#E6E6E6"; // 폐강
+            else if (v.group_title === "사업/경영") color = "#46c29d";
+            else if (v.group_title === "산업/기술") color = "#9324a6";
+            else if (v.group_title === "리더십/조직문화") color = "#6ba3fe";
+            else if (v.group_title === "인문/소양") color = "#ef9968";
             /* 남은인원표시 */
             const remainder = v.enrol_limit - v.enrol_count;
             const yellowLimit = Math.round(v.enrol_limit / 3); 
@@ -226,27 +230,28 @@
                 <button class="fc-event" class:active={bunya[0]} 
                     on:click={() => bunyaClick(0)} data-color="#00acac">
                     <div class="fc-event-text">전체</div>
-                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-success"></i></div>
+                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-black-500"></i></div>
                 </button>
                 <button class="fc-event" class:active={bunya[1]}
-                    on:click={() => bunyaClick(1)} data-color="#348fe2">
+                    on:click={() => bunyaClick(1)}>
+                    <!-- on:click={() => bunyaClick(1)} data-color="#348fe2"> -->
                     <div class="fc-event-text">사업/경영</div>
-                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-blue"></i></div>
+                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px" style="color:#46c29d"></i></div>
                 </button>
                 <button class="fc-event" class:active={bunya[2]} 
                     on:click={() => bunyaClick(2)} data-color="#f59c1a">
                     <div class="fc-event-text">산업/기술</div>
-                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-warning"></i></div>
+                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px" style="color:#9324a6"></i></div>
                 </button>
                 <button class="fc-event" class:active={bunya[3]} 
                     on:click={() => bunyaClick(3)} data-color="#ff5b57">
                     <div class="fc-event-text">리더십/조직문화</div>
-                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-danger"></i></div>
+                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px" style="color:#6ba3fe"></i></div>
                 </button>
                 <button class="fc-event" class:active={bunya[4]} 
                     on:click={() => bunyaClick(4)} data-color="#ff5b57">
                     <div class="fc-event-text">인문/소양</div>
-                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-purple"></i></div>
+                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px" style="color:#ef9968"></i></div>
                 </button>
             </div>
             <hr class="my-3" />
@@ -278,17 +283,22 @@
                 </button>
                 <button class="fc-event" data-color="#b6c2c9"
                     class:active={eduTime[1]} on:click={() => eduTimeClick(1)}>
-                    <div class="fc-event-text">4시간<br>(08:30 ~ 12:30)</div>
+                    <div class="fc-event-text">4H (오전)<br>(08:30 ~ 12:30)</div>
                     <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-black-500"></i></div>
                 </button>
                 <button class="fc-event" data-color="#b6c2c9"
                     class:active={eduTime[2]} on:click={() => eduTimeClick(2)}>
-                    <div class="fc-event-text">8시간</div>
+                    <div class="fc-event-text">4H (오후)<br>(13:30 ~ 17:30)</div>
                     <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-black-500"></i></div>
                 </button>
                 <button class="fc-event" data-color="#b6c2c9"
                     class:active={eduTime[3]} on:click={() => eduTimeClick(3)}>
-                    <div class="fc-event-text">16시간</div>
+                    <div class="fc-event-text">8H</div>
+                    <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-black-500"></i></div>
+                </button>
+                <button class="fc-event" data-color="#b6c2c9"
+                    class:active={eduTime[4]} on:click={() => eduTimeClick(4)}>
+                    <div class="fc-event-text">16H</div>
                     <div class="fc-event-icon"><i class="fas fa-circle fa-fw fs-9px text-black-500"></i></div>
                 </button>
             </div>

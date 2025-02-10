@@ -1,3 +1,0 @@
-colorAdminApp.controller('pageWithLightSidebarController', function ($scope, $rootScope, $state) {
-  $rootScope.setting.layout.appSidebarLight = true;
-});
