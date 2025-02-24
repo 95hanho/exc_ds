@@ -70,8 +70,9 @@
             }
             if(endDate)
                 obj.schedule_start_date_add_date = new Date(endDate);
-            if(addDates.length > 1)
-                obj.schedule_after_date = addDates.slice(0, addDates.length - 1).sort();
+            if(addDates.length > 1) {
+                obj.schedule_after_date_JSON = JSON.stringify(addDates.slice(0, addDates.length - 1).sort());
+            }
             setAdminApp(obj).then(({data}) => {
                 console.log(data);
                 setAdminAppResult({...program, ...data.data});
