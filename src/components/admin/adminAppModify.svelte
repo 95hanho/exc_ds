@@ -267,7 +267,7 @@
                                     <td>
                                         <select class="form-select form-select-sm"
                                             bind:value={program.part_type}>
-                                            <option value="합반">합반</option>
+                                            <!-- <option value="합반">합반</option> -->
                                             <option value="그룹장">그룹장</option>
                                             <option value="파트장">파트장</option>
                                         </select>

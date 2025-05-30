@@ -241,8 +241,7 @@
 <p class="apply-comment">
     (과정별 대상 유형 : 
     <span class="c_red">그룹장</span>,
-    <span class="c_blue">파트장</span>,
-    합반)
+    <span class="c_blue">파트장</span>)
 </p>
 <div class="panel panel-inverse">
     <!-- BEGIN panel-heading -->
@@ -585,11 +584,11 @@
                         <td
                             class:c_red={program.part_type === '그룹장'}
                             class:c_blue={program.part_type === '파트장'}>
-                            {#if program.part_type === '합반'}
+                            <!-- {#if program.part_type === '합반'}
                             {program.part_type}
-                            {:else}
+                            {:else} -->
                             <b>{program.part_type}</b>
-                            {/if}
+                            <!-- {/if} -->
                         </td>
                         <td>{program.enrol_limit}</td>
                         <td style={enrollCountStyle(program.enrol_limit, program.enrol_count)}>

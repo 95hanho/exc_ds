@@ -116,7 +116,7 @@
             case 2: return `<br>위치 : ${index + 1}번줄 수강신청시작일`;
             case 3: return `<br>위치 : ${index + 1}번줄 수강신청종료일`;
             case 4: return `<br>위치 : ${index + 1}번줄 정원`;
-            case 5: return `<br>위치 : ${index + 1}번줄 합반(6)/그룹장(4)/파트장(2) 구분`;
+            case 5: return `<br>위치 : ${index + 1}번줄 합반(6:없어짐)/그룹장(4)/파트장(2) 구분`;
             case 6: return `<br>위치 : ${index + 1}번줄 프로그램 코드`;
             case 7: return `<br>위치 : ${index + 1}번줄 대면(N)/비대면(Y)`;
             case 8: return `<br>위치 : ${index + 1}번줄 교육시간(시간)`;
@@ -144,7 +144,7 @@
                 { type: 'text', title: '수강신청시작일' },
                 { type: 'text', title: '수강신청종료일' },
                 { type: 'text', title: '정원' },
-                { type: 'text', title: '합반(6)/그룹장(4)/파트장(2)' },
+                { type: 'text', title: '그룹장(4)/파트장(2)' },
                 { type: 'text', title: '프로그램코드' },
                 { type: 'text', title: '대면(N)/비대면(Y)' },
                 { type: 'text', title: '교육시간(시간)' },
