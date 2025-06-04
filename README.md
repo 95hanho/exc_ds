@@ -1,6 +1,6 @@
-# 사용설명서
+# 삼성DS 교육신청 사이트
 
-## 
+## 접속 정보
 
 url : https://dsedu.exc.co.kr/  
 서버디렉토리 : 121서버\sclass.exc.co.kr
