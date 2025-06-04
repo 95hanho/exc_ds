@@ -10,8 +10,6 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-# 용량너무 큼 외장하드파일 가져오기
-public/template/*
 *.local
 front_BACKUP
 
