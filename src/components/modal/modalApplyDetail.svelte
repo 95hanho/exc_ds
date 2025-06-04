@@ -103,7 +103,7 @@
                                     <td>{moment(program.schedule_enrol_end_date).format('M.D (ddd)')}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>역량</b></td>
+                                    <td><b>분류</b></td>
                                     <td>{program.group_title}</td>
                                 </tr>
                                 <tr>

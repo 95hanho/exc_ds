@@ -11,11 +11,11 @@
     let calendar = null;
     let allProgramList = []; // 프로그램리스트
     let programList = null; // 보여줄 **
-    // let bunya = [true, false, false, false, false]; // 역량 구별
+    // let bunya = [true, false, false, false, false]; // 분류 구별
     let groupTitleList = [];
     let groupTitleOnOff = [];
     let groupTitleColor = ['', '#46c29d', '#9324a6', '#6ba3fe', '#ef9968'];
-    let bunya = [true, false, false]; // 역량 구별
+    let bunya = [true, false, false]; // 분류 구별
     let sugang = [true, false, false]; // 수강 관리
     let online = [true, false, false]; // 온라인/오프라인
     let eduTime = [true, false, false, false, false]; // 교육시간
@@ -136,7 +136,7 @@
     // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const addEventSource = () => {
         return programList.map((v, i) => {
-            /* 역량별 색 */
+            /* 분류별 색 */
             let color = "";
             if (v.schedule_status === true) color = "#E6E6E6"; // 폐강
             else if(v.group_title_color) color = v.group_title_color; // 색깔 정해진거 있으면 그 색으로
@@ -246,7 +246,7 @@
                 </button>
             </div>
             <hr class="my-3" />
-            <h5 class="mb-3">역량</h5>
+            <h5 class="mb-3">분류</h5>
             <div>
                 {#each groupTitleList as groupTitle, index}
                 <button class="fc-event" class:active={groupTitleOnOff[index]}

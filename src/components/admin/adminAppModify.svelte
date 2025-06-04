@@ -233,7 +233,7 @@
                                 {/each}
                                 {/if}
                                 <tr>
-                                    <td><b>역량</b></td>
+                                    <td><b>분류</b></td>
                                     <td class="wide">{program.group_title}</td>
                                 </tr>
                                 <tr>

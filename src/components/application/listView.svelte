@@ -267,7 +267,7 @@
                         class:asc={sortingInfo[3] == true}
                         class:desc={sortingInfo[3] == false}>
                             <button on:click={() => sortChange(3, 'group_title')}></button>
-                            역량</th>
+                            분류</th>
                         <th style="width:350px" class="text-nowrap sorting"
                         class:asc={sortingInfo[4] == true}
                         class:desc={sortingInfo[4] == false}>
@@ -414,7 +414,7 @@
                                 class:asc={sortingInfo[3] == true}
                                 class:desc={sortingInfo[3] == false}>
                                     <button on:click={() => sortChange(3, 'group_title')}></button>
-                                    역량</th>
+                                    분류</th>
                                 <th style="width:350px" class="text-nowrap sorting"
                                 class:asc={sortingInfo[4] == true}
                                 class:desc={sortingInfo[4] == false}>
