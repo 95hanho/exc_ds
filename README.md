@@ -1,27 +1,27 @@
-# 삼성DS 교육신청 사이트
+# 엑스퍼트 HR 수강신청 Front
 
-## 접속 정보
+> HR교육 소개 및 수강신청 사이트
 
-url : https://dsedu.exc.co.kr/  
-서버디렉토리 : 121서버\sclass.exc.co.kr
+## 🔧 기술 스택
 
-## 기본 세팅 
+- svelte, vite
+- package :
+  - axios, svelte-spa-router, bootstrap
+  - flatpickr, font-awesome, fullcalendar, jquery, jspreadsheet-ce, moment, summernote
 
-> nodejs 설치
+## 기본 세팅
 
-> 패키지 파일들 설치
-> - cd ./프로젝트명
->
-> - npm install
+- nodejs 설치
+- 패키지 파일들 설치
+  - cd ./프로젝트명
+  - npm install
 
-## 실행
+## 실행 방법
 
-npm run dev   
-npm run dev -- --port 5173 => port5173으로 로컬실행
-* API쪽 CORS 확인필요 => localhost:5173/ 열려있음
+- npm run dev  
+- npm run dev -- --port 5173 => port5173로 로컬실행
+> API쪽 CORS 확인필요 => localhost:5173 열려있음
 
 ## 빌드
 
-npm run build
-후에 '/dist'의 파일들 'sclass.exc.co.kr'에 복사/덮어쓰기    
-* template 폴더는 정적파일들로 나머지만
+- npm run build
